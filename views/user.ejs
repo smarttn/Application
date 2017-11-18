@@ -1,0 +1,72 @@
+<% include partial/header%>
+<!-- Content -->
+<div class="page-content">
+
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>User</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb row END -->
+    <div class="content-area">
+        <div class="container">
+            <div class="row ">
+
+                <div style="width: 50%;margin: 0 auto">
+                <div class="col-md-12">
+                    <div class="p-a30 bg-gray clearfix m-b30 ">
+                        <h2>User Information</h2>
+                        <div class="dzFormMsg"></div>
+                        <form method="post" class="dzForm" action="script/contact.php">
+                            <input type="hidden" value="Contact" name="dzToDo" >
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="dzName" type="text" required class="form-control" placeholder="Your Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="dzEmail" type="email" class="form-control" required  placeholder="Your Email Id" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="dzOther[Phone]" type="text" required class="form-control" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input name="dzOther[Subject]" type="text" required class="form-control" placeholder="Subject">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <button name="submit" type="submit" value="Submit" class="site-button "> <span>Submit</span> </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content END-->
+<!-- JavaScript  files ========================================= -->
+<% include partial/footer%>

@@ -28,6 +28,9 @@ router.get("/courses",function(req,res){
 });
 
 
+
+
+
 router.get("/event",function(req,res){
     res.render("event/events");
 
@@ -81,6 +84,46 @@ router.get("/mycourses/:id",function(req,res){
 
 
 
+//-------------Courses detail route---------------------------------//
+
+router.get("/course/game-design-with-stratch",function(req,res){
+    res.render("courses/details/game-design-with-stratch");
+
+});
+router.get("/course/python-coding-with-game",function(req,res){
+    res.render("courses/details/python-coding-with-game");
+
+});
+router.get("/course/iot-with-raspberrypi",function(req,res){
+    res.render("courses/details/iot-with-raspberrypi");
+
+});
+router.get("/course/electrical-engineering-with-arduino",function(req,res){
+    res.render("courses/details/electrical-engineering-with-arduino");
+
+});
+router.get("/course/robot-vex",function(req,res){
+    res.render("courses/details/robot-vex");
+
+});
+router.get("/course/wonder-dash-and-dot",function(req,res){
+    res.render("courses/details/wonder-dash-and-dot");
+
+});
+router.get("/course/game-design-with-unity",function(req,res){
+    res.render("courses/details/game-design-with-unity");
+
+});
+router.get("/course/3d-design-and-printing",function(req,res){
+    res.render("courses/details/3d-design-and-printing");
+
+});
+
+
+
+
+
+
 //-------------footer route---------------------------------//
 
 router.get("/gallery",function(req,res){
@@ -112,20 +155,18 @@ router.get("/help",function(req,res){
 
 
 
-//----------------------------------------------//
-
-
+//--------------login logout register route--------------------------------//
 
 router.post("/register",function(req,res){
 	var newUser = new User({username:req.body.username,email:req.body.email,fullname:req.body.fullname,isadmin:"false"});
 	User.register(newUser,req.body.password,function(err,user){
 		if(err){
 			req.flash("error",err.message);
-			return res.redirect("/");
+			return res.redirect("back");
 		}
 		passport.authenticate("local")(req,res,function(){
 		req.flash("success","Account created successfully, welcome here!");
-		res.redirect("/");
+		res.redirect("back");
 		})
 	})
 });
@@ -139,7 +180,7 @@ router.get("/login",function(req,res){
 router.post("/login",passport.authenticate("local",
 	{
 		successRedirect:"/",
-		failureRedirect:"/login",
+		failureRedirect:"back",
 		failureFlash: 'Invalid username or password.'
 	}),function(req,res){
 });
@@ -151,5 +192,6 @@ router.get("/logout",function(req,res){
 });
 
 
+//----------------------------------------------//
 
 module.exports = router;

@@ -47,14 +47,16 @@ app.use(function(req,res,next){
 
 
 app.use(indexRoutes);
-app.use("/courses",courseRoutes);
+//app.use("/courses",courseRoutes);
+
 app.use("/user",userRoutes);
 
-app.use("/courses/:id/comments",commentRoutes);
+//app.use("/courses/:id/comments",commentRoutes);
 
-//app.listen("3000",function(){
-	//console.log("Server started");
- //})
-app.listen(process.env.PORT, process.env.IP,function(){
-	console.log("Server started!");
-});
+app.listen("3000",function(){
+console.log("Server started");
+})
+
+//app.listen(process.env.PORT, process.env.IP,function(){
+//console.log("Server started!");
+//});
