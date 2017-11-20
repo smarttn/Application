@@ -22,26 +22,7 @@ router.get("/",function(req,res){
  //   })
 //});
 
-router.get("/courses",function(req,res){
-    res.render("courses/courses");
 
-});
-
-
-
-
-
-router.get("/event",function(req,res){
-    res.render("event/events");
-
-});
-
-
-
-router.get("/program",function(req,res){
-    res.render("program/program");
-
-});
 
 router.get("/about",function(req,res){
     res.render("about");
@@ -54,28 +35,6 @@ router.get("/contact",function(req,res){
 });
 
 
-router.get("/event",function(req,res){
-    res.render("event/event");
-
-});
-
-
-
-
-router.get("/shop",function(req,res){
-    res.render("shop/shop");
-
-});
-
-router.get("/feature",function(req,res){
-    res.render("feature/feature");
-
-});
-
-router.get("/donate",function(req,res){
-    res.render("donate/donate");
-
-});
 
 router.get("/mycourses/:id",function(req,res){
     res.render("mycourses/mycourses");
@@ -85,6 +44,15 @@ router.get("/mycourses/:id",function(req,res){
 
 
 //-------------Courses detail route---------------------------------//
+
+
+router.get("/courses",function(req,res){
+    res.render("courses/courses");
+
+});
+
+
+
 
 router.get("/course/game-design-with-stratch",function(req,res){
     res.render("courses/details/game-design-with-stratch");
@@ -119,6 +87,40 @@ router.get("/course/3d-design-and-printing",function(req,res){
 
 });
 
+//-------------event route---------------------------------//
+
+router.get("/event",function(req,res){
+    res.render("event/events");
+
+});
+
+
+router.get("/event/bay-area-parent-education-fair",function(req,res){
+    res.render("event/eventdetail/bay-area-parent-education-fair");
+
+});
+
+router.get("/event/kiditech-openhouse-2017",function(req,res){
+    res.render("event/eventdetail/kiditech-openhouse-2017");
+
+});
+
+
+
+
+//-------------shop route---------------------------------//
+
+router.get("/shop",function(req,res){
+    res.render("shop/shop");
+
+
+});
+
+router.get("/shop/3d-printing-service",function(req,res){
+    res.render("shop/item/3d-printing-service");
+
+
+});
 
 
 
