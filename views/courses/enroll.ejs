@@ -1,0 +1,79 @@
+<% include ../partial/header%>
+<!-- header END -->
+
+<!-- Content -->
+<div class="page-content">
+
+	<!-- Breadcrumb row -->
+	<div class="breadcrumb-row">
+		<div class="container">
+			<ul class="list-inline">
+				<li><a href="#">Home</a></li>
+				<li>Course Enrollment</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Breadcrumb row END -->
+	<!-- contact area -->
+	<div class="content bg-white">
+
+
+<div class="container" style="width: 80%;margin: 0 auto">
+	<div class="row">
+
+		<!-- panel preview -->
+		<div class="col-sm-12">
+			<form class="p-a30 w3-form text-center text-center"action="/enroll/<%=course%>" method="POST">
+			<h4>Enroll the course through Paypal Payment:</h4>
+			<div class="panel panel-default">
+				<div class="panel-body form-horizontal payment-form">
+					<div class="form-group">
+						<label for="concept" class="col-sm-3 control-label">Course Name</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="concept" name="coursename" placeholder="<%=course%>" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-sm-3 control-label">User ID</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="description" name="userid" placeholder="<%=currentUser._id%>" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="amount" class="col-sm-3 control-label">Amount</label>
+						<div class="col-sm-7">
+							<input type="number" class="form-control" id="amount" name="courseprice"placeholder="<%=price%>" disabled>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="date" class="col-sm-3 control-label">Date</label>
+						<div class="col-sm-7">
+							<input type="date" class="form-control" id="date" name="date">
+						</div>
+					</div>
+
+					<div class="col-xs-12">
+						<hr style="border:1px dashed #dddddd;">
+						<button type="submit" class="btn btn-success btn-block">Confirm</button>
+					</div>
+
+
+				</div>
+			</div>
+			</form>
+		</div> <!-- / panel preview -->
+
+
+
+
+	</div>
+
+	</div>
+</div>
+
+</div>
+
+
+<!-- JavaScript  files ========================================= -->
+<% include ../partial/footer%>

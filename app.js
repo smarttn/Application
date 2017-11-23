@@ -8,9 +8,7 @@ var LocalStrategy = require("passport-local");
 var flash = require('connect-flash');
 var User = require("./models/user");
 
-var commentRoutes    = require("./routes/comments"),
-    courseRoutes = require("./routes/course"),
-    indexRoutes      = require("./routes/index"),
+var indexRoutes      = require("./routes/index"),
 	userRoutes = require("./routes/user")
 
 
@@ -47,11 +45,12 @@ app.use(function(req,res,next){
 
 
 app.use(indexRoutes);
-//app.use("/courses",courseRoutes);
+
+
 
 app.use("/user",userRoutes);
 
-//app.use("/courses/:id/comments",commentRoutes);
+
 
 //app.listen("3000",function(){
 //console.log("Server started");

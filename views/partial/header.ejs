@@ -113,19 +113,18 @@
 
         <div>
             <%if(success && success.length > 0){%>
-            <div>
-                <div>
-                    <%=success%>
+
+
+                <div class="alert alert-success"> <strong> <%=success%></strong>  </div>
                 </div>
                 <%}%>
                 <%if(error && error.length > 0){%>
-                <div>
-                    <div>
-                        <%=error%>
-                    </div>
-                </div>
+
+
+                        <div class="alert alert-success"> <strong> <%=error%></strong>  </div>
+
                 <%}%>
-            </div>
+
         </div>
 
     </header>

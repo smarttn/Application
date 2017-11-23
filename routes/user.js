@@ -40,18 +40,36 @@ router.put("/:id",function(req,res){
     })
 });
 
-
+/*
 router.put("/update/:userid",function(req,res){
-    UserModel.findByIdAndUpdate(req.params.userid,req.body.userdata,function(err,updateuser){
+    UserModel.findByIdAndUpdate(req.params.userid,{username:req.body.username,email:req.body.email,fullname:req.body.fullname },function(err,updateuser){
         if(err){
             res.redirect("/");
         }else{
             res.redirect("/");
         }
     })
-});
+});   */
 
 
+/*
+router.put("/update/:userid",function(req,res){
+
+    UserModel.findById(req.params.userid, function (err, user) {
+    if (err) return handleError(err);
+
+    user.username = req.body.username;
+        user.email = req.body.email;
+        user.fullname = req.body.fullname;
+
+
+        res.redirect("/")
+
+
+
+})});
+
+*/
 
 
 module.exports = router;

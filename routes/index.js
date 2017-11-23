@@ -3,6 +3,9 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user")
 var courseModel = require("../models/courseModel");
+var middleware = require("../middleware")
+var Enroll = require("../models/enroll")
+
 
 //－－－－1级路由规则－－－－－//
 
@@ -11,16 +14,6 @@ router.get("/",function(req,res){
 	res.render("index");
 
 });
-
-//router.get("/course",function(req,res){
-    //courseModel.find({},function(err,coursecollection){
-       // if(err){
- //           console.log(err);
- //       }else{
- //           res.render("course/course",{courses:coursecollection});
- //       }
- //   })
-//});
 
 
 
@@ -35,14 +28,6 @@ router.get("/contact",function(req,res){
 });
 
 
-
-router.get("/mycourses/:id",function(req,res){
-    res.render("mycourses/mycourses");
-
-});
-
-
-
 //-------------Courses detail route---------------------------------//
 
 
@@ -50,8 +35,6 @@ router.get("/courses",function(req,res){
     res.render("courses/courses");
 
 });
-
-
 
 
 router.get("/course/game-design-with-stratch",function(req,res){
@@ -86,6 +69,54 @@ router.get("/course/3d-design-and-printing",function(req,res){
     res.render("courses/details/3d-design-and-printing");
 
 });
+
+router.get("/course/:id/enroll",middleware.isLoggedIn,function(req,res){
+
+res.render("courses/enroll",{course:req.params.id,price:400});
+
+
+});
+
+
+/*
+router.post("/enroll/:id",function(req,res){
+
+    Enroll.create(req.body.coursename,function(err, enroll){
+        if(err){
+            console.log(err);
+        }else{
+            enroll.student.id = req.params.id;
+
+            enroll.save();
+
+            req.flash("success","Leave a comment successfully")
+            res.redirect("/");
+        }
+    })
+
+
+        });    */
+
+
+
+router.post("/enroll/:id",function(req,res){
+
+    var newenroll = {coursename:req.params.id,student:{id:req.user._id}};
+    //var newenroll = {coursename:req.body.coursename,student:{id:req.body.userid}};
+
+    Enroll.create(newenroll, function(err,newlyCreated){
+        if(err){
+            console.log(err);
+        }else{
+            req.flash("success","You had completed the enrollment, welcome back!");
+            res.redirect("/");
+
+        }
+    })
+});
+
+
+
 
 //-------------event route---------------------------------//
 
