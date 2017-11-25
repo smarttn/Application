@@ -52,9 +52,25 @@ router.put("/update/:userid",function(req,res){
 });   */
 
 
-/*
-router.put("/update/:userid",function(req,res){
 
+router.put("/update/:userid",function(req,res) {
+
+    var objForUpdate = {};
+    if (req.body.username) objForUpdate.username = req.body.username;
+    if (req.body.email) objForUpdate.email = req.body.email;
+    if (req.body.fullname) objForUpdate.fullname = req.body.fullname;
+    var setObj = {$set: objForUpdate}
+
+
+    UserModel.update({_id: req.params.userid}, setObj, function (err, updated) {
+        if (err) console.log("Error occured!");
+        req.flash("success","Your account is sucessfully updated, welcome back!");
+        res.redirect("/")
+    });
+
+});
+
+/*
     UserModel.findById(req.params.userid, function (err, user) {
     if (err) return handleError(err);
 
@@ -67,9 +83,9 @@ router.put("/update/:userid",function(req,res){
 
 
 
-})});
+})});  */
 
-*/
+
 
 
 module.exports = router;
