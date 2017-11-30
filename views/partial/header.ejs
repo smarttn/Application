@@ -99,11 +99,15 @@
                             <li id="user" ><a href="/user/<%=currentUser._id%>" class="item" id="user"><i class="user icon"></i><strong><%=currentUser.username%></strong></a>
 
                                 <ul class="sub-menu">
+
+                                    <%if(currentUser.isadmin== "true"){ %>
+                                    <li><a href="/admin">ADMIN PAGE</a></li>
+                                    <%}else{%><%}%>
+
                                     <li><a href="/user/<%=currentUser._id%>">Account</a></li>
                                     <li><a href="/user/<%=currentUser._id%>/courses">My courses</a></li>
                                     <li><a href="/user/<%=currentUser._id%>/orders">Orders</a></li>
                                     <li><a href="/logout">Log Out</a></li>
-
 
                                 </ul>
 

@@ -9,6 +9,7 @@ var flash = require('connect-flash');
 var User = require("./models/user");
 
 var indexRoutes      = require("./routes/index"),
+	adminRoutes = require("./routes/admin")
 	userRoutes = require("./routes/user")
 
 
@@ -47,7 +48,7 @@ app.use(function(req,res,next){
 app.use(indexRoutes);
 
 app.use("/user",userRoutes);
-
+app.use("/admin",adminRoutes);
 
 
 //app.listen("3000",function(){

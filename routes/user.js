@@ -2,10 +2,8 @@ var express = require("express");
 var router = express.Router();
 var UserModel = require("../models/user");
 var enrollModel = require("../models/enroll");
+var courseModel = require("../models/courseModel");
 var middleware = require("../middleware")
-
-
-
 
 
 
@@ -14,18 +12,39 @@ var middleware = require("../middleware")
 
 router.get("/:id/courses",function(req,res){
 
-    enrollModel.find({student: { id: req.params.id }}).exec(function(err,usercourse){
-        if(err){
-            console.log(err);
-        }else{
+    enrollModel.find({student:{id:req.user._id}},function(err, usercourses){
 
-            res.render("users/courses",{usercourses:usercourse});
-        }
+        //console.log(usercourses);
+
+        var ids = usercourses.map(function(usercourse) { return usercourse.coursename; });
+
+
+        courseModel.find({name: {$in: ids}}, function(err, mycourses) {
+            if(err){
+                //console.log(err);
+            }else{
+                res.render("users/courses",{mycourses:mycourses});
+            }
+        });
     });
 
 
+});
+
+
+
+router.get("/courses/:id",function(req,res){
+    courseModel.findById(req.params.id).exec(function(err,courseinfo){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("users/coursedetail",{course:courseinfo});
+        }
+    });
 
 });
+
+
 
 
 
@@ -41,16 +60,7 @@ router.get("/:id/orders",function(req,res){
 });
 
 
-router.get("/:id/course/:id",function(req,res){
-    UserModel.findById(req.params.id).exec(function(err,userinfo){
-        if(err){
-            console.log(err);
-        }else{
-            res.render("users/user",{userdata:userinfo});
-        }
-    });
 
-});
 
 
 
@@ -75,7 +85,7 @@ router.get("/:id",function(req,res){
 router.put("/update/:userid",function(req,res) {
 
     var objForUpdate = {};
-    if (req.body.username) objForUpdate.username = req.body.username;
+
     if (req.body.email) objForUpdate.email = req.body.email;
     if (req.body.fullname) objForUpdate.fullname = req.body.fullname;
     var setObj = {$set: objForUpdate}

@@ -2,21 +2,31 @@ var mongoose   = require("mongoose");
 
 var courseSchema = new mongoose.Schema({
 	name:String,
-	src:String,
+	img:String,
 	des:String,
-	author:{
-		id:{         
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
-		},
-		username:String
+
+	sec1:{
+		title:String,
+		detail:String,
+		video:String
 	},
-	comments: [
-      {
-         type: mongoose.Schema.Types.ObjectId,
-         ref: "Comment"
-      }
-   ]
+    sec2:{
+        title:String,
+        detail:String,
+        video:String
+    },
+    sec3:{
+        title:String,
+        detail:String,
+        video:String
+    },
+    sec4:{
+        title:String,
+        detail:String,
+        video:String
+    }
+
+
 });
 
 var courseModel = mongoose.model("courseModel",courseSchema);
