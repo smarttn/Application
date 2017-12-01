@@ -45,6 +45,33 @@ router.get("/courses/:id",function(req,res){
 });
 
 
+router.get("/courses/:id/:id2",function(req,res){
+    courseModel.findById(req.params.id).exec(function(err,courseinfo){
+        if(err){
+            console.log(err);
+        }else{
+            sec = req.params.id2
+            if(sec=='sec1'){
+                res.render("users/coursewatch",{sec:courseinfo.sec1});
+            };
+            if(sec=='sec2'){
+                res.render("users/coursewatch",{sec:courseinfo.sec2});
+            };
+            if(sec=='sec3'){
+                res.render("users/coursewatch",{sec:courseinfo.sec3});
+            };
+            if(sec=='sec4'){
+                res.render("users/coursewatch",{sec:courseinfo.sec4});
+            };
+
+        }
+    });
+
+});
+
+
+
+
 
 
 
