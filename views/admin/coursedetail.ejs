@@ -1,0 +1,226 @@
+<% include ../partial/header%>
+<!-- Content -->
+
+<script type="text/javascript">
+    $("#user").addClass("active");
+</script>
+
+<div class="page-content">
+
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Course Info</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb row END -->
+    <div class="content-area">
+        <div class="container">
+            <div class="row">
+
+
+                <!-- New Course -->
+                <div class="col-sm-10 col-sm-offset-1">
+                    <form method="post" class="p-a30 w3-form text-center text-center"action="/admin/updatecourse/<%=course._id %>?_method=PUT" method="POST">
+                        <h4>Course Detail Management</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-body form-horizontal payment-form">
+                                <div class="form-group">
+                                    <label for="concept" class="col-sm-3 control-label">Course Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="name" placeholder="<%=course.name %>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Image URL</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="img" placeholder="<%=course.img %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Price</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="price" placeholder="<%=course.price %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Instructor</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="inst" placeholder="<%=course.inst %>">
+                                    </div>
+                                </div>
+
+                                <div class="w3-divider bg-gray-dark"><br></div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Prerequisite</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="pre" rows="4" class="form-control"  placeholder="<%=course.pre %>"></textarea>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Description</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="des" rows="4" class="form-control" placeholder="<%=course.des %>"></textarea>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Outcome1</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="o1" placeholder="<%=course.outcome.o1 %>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Outcome2</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="o2" placeholder="<%=course.outcome.o2 %>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Outcome3</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="o3" placeholder="<%=course.outcome.o3 %>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Outcome4</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="o4" placeholder="<%=course.outcome.o4 %>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Outcome5</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="o5" placeholder="<%=course.outcome.o5 %>">
+                                    </div>
+                                </div>
+
+
+                                <div class="w3-divider bg-gray-dark"><br></div>
+
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec1 title</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="sec1title" placeholder="<%=course.sec1.title %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec1 detail</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="sec1detail" rows="4" class="form-control"  placeholder="<%=course.sec1.detail %>"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec1 video</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="sec1video" placeholder="<%=course.sec1.video %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec2 title</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="sec2title" placeholder="<%=course.sec2.title %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec2 detail</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="sec2detail" rows="4" class="form-control" placeholder="<%=course.sec2.detail %>"></textarea>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec2 video</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="sec2video" placeholder="<%=course.sec2.video %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec3 title</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="sec3title" placeholder="<%=course.sec3.title %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec3 detail</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="sec3detail" rows="4" class="form-control"  placeholder="<%=course.sec3.detail %>"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec3 video</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="sec3video" placeholder="<%=course.sec3.video %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec4 title</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="sec4title" placeholder="<%=course.sec4.title %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec4 detail</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="sec4detail" rows="4" class="form-control" placeholder="<%=course.sec4.detail %>"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="amount" class="col-sm-3 control-label">Sec4 video</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="sec4video" placeholder="<%=course.sec4.video %>">
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="col-xs-12">
+                                    <hr style="border:1px dashed #dddddd;">
+                                    <button type="submit" class="btn btn-success btn-block">Update</button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- / New Course-->
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content END-->
+<!-- JavaScript  files ========================================= -->
+<% include ../partial/footer%>

@@ -1,0 +1,361 @@
+<% include ../partial/header%>
+    <!-- Content -->
+    <div class="page-content bg-white">
+
+        <!-- Breadcrumb row -->
+        <div class="breadcrumb-row">
+            <div class="container">
+                <ul class="list-inline">
+                    <li><a href="#">Home</a></li>
+                    <li>Course Details</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb row END -->
+        <!-- contact area -->
+        <div class="content-area">
+            <!-- Product details -->
+            <div class="container woo-entry">
+                <div class="row">
+                    <div class="col-md-12">
+						<div class="course-view text-center m-b30">
+							<h2 class="m-t0 m-b10 font-28 text-black"><%=course.name %></h2>
+							<div class="w3-divider bg-gray-dark"><br></div>
+
+
+						</div>
+					</div>
+				</div>
+
+				 <div class="row">
+
+
+					 <div class="col-md-12">
+					 <div class="col-md-8">
+						 <div class="w3-media m-b30"style="box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+							 <a href="#"><img src="<%=course.img %>" alt=""></a>
+						 </div>
+					 </div>
+
+					 <div class="col-md-4" >
+						 <div class="bg-gray p-a20"style="box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+
+							 <div class="teacher-info border-top p-t30">
+								 <div class="teacher-pic text-center">
+									 <div class="w3-media">
+										 <a href="#"><img src="images/teacher.jpg" alt=""></a>
+									 </div>
+									 <h4 class="text-black m-b5">Instructor: <%=course.inst %></h4>
+
+
+
+								 </div>
+							 </div>
+							 <div class="w3-divider bg-gray-dark"><i class="icon-dot c-square"></i></div>
+
+
+							 <div class="clearfix p-b15">
+								 <span class="font-20 text-primary pull-left">Fee: $ <%=course.price %></span>
+								 <a href="/course/<%=course._id %>/enroll" class="site-button pull-right">Take This Course</a>
+							 </div>
+
+						 </div>
+					 </div>
+					 </div>
+				 </div>
+
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<!-- Tabs -->
+                        <div class="w3-tabs border bg-tabs product-description" style="box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+                            <ul class="nav nav-tabs w25">
+                                <li class="active">
+									<a data-toggle="tab" href="#description">
+										<i class="fa fa-bookmark m-r10"></i>
+										<span class="title-head">Description</span>
+									</a>
+								</li>
+                                <li>
+									<a data-toggle="tab" href="#curriculum">
+										<i class="fa fa-cube"></i>
+										<span class="title-head">Curriculum</span>
+									</a>
+								</li>
+
+								<li>
+									<a data-toggle="tab" href="#review">
+										<i class="fa fa-comments"></i>
+										<span class="title-head">Review </span> <span class="text-primary">(1)</span>
+									</a>
+								</li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="description" class="tab-pane active">
+									<h3 class="m-t0">ABOUT THIS COURSE</h3>
+									<p class="m-b10">
+                                        <%=course.des %>
+									</p>
+									<br>
+
+									<h3 class="m-t0">PREREQUISITE:</h3>
+									<p class="m-b10">
+                                        <%=course.pre %>
+									</p>
+
+									<br>
+									<h3>LEARNING OUTCOMES</h3>
+                                    <ul class="list-check-circle primary">
+
+                                        <%if(course.outcome.o1){ %>
+										<li><%=course.outcome.o1 %></li>
+                                        <%}else{%><%}%>
+                                        <%if(course.outcome.o2){ %>
+										<li><%=course.outcome.o2 %></li>
+                                        <%}else{%><%}%>
+                                        <%if(course.outcome.o3){ %>
+										<li><%=course.outcome.o3 %></li>
+                                        <%}else{%><%}%>
+                                        <%if(course.outcome.o4){ %>
+										<li><%=course.outcome.o4 %></li>
+                                        <%}else{%><%}%>
+                                        <%if(course.outcome.o5){ %>
+										<li><%=course.outcome.o5 %></li>
+                                        <%}else{%><%}%>
+
+                                    </ul>
+									<div class="w3-divider bg-gray-dark"><i class="icon-dot c-square"></i></div>
+									<div class="m-b10">
+
+										<h5>Share :</h5>
+										<div class="sharethis-inline-share-buttons"></div>
+
+
+									</div>
+                                </div>
+                                <div id="curriculum" class="tab-pane">
+									<h3 class="m-tb0">Curriculum</h3>
+									<h5 class="text-primary">Lesson 3</h5>
+									<table class="table" >
+										<thead>
+											<tr> 
+												<th>Lecture</th> 
+												<th>Unit</th> 
+												<th class="text-right">Time</th> 
+											</tr> 
+										</thead>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 1</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 00 : 10 : 00</span>
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 2</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 00 : 20 : 00</span>
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 3</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 02 : 10 : 05</span>
+											</td>
+                                        </tr>
+                                    </table>
+									<h5 class="text-primary">Lesson 2</h5>
+									<table class="table" >
+										<thead>
+											<tr> 
+												<th>Lecture</th> 
+												<th>Unit</th> 
+												<th class="text-right">Time</th> 
+											</tr> 
+										</thead>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 1</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 00 : 10 : 00</span>
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 2</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 00 : 20 : 00</span>
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 3</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 02 : 10 : 05</span>
+											</td>
+                                        </tr>
+										<tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 1</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 00 : 10 : 00</span>
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 2</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 00 : 20 : 00</span>
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 3</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 02 : 10 : 05</span>
+											</td>
+                                        </tr>
+                                    </table>
+									<h5 class="text-primary">Lesson 1</h5>
+									<table class="table" >
+										<thead>
+											<tr> 
+												<th>Lecture</th> 
+												<th>Unit</th> 
+												<th class="text-right">Time</th> 
+											</tr> 
+										</thead>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 1</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 00 : 10 : 00</span>
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 2</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 00 : 20 : 00</span>
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+												<span><i class="fa fa-file-o m-r10"></i>Lecture 1. 3</span>
+											</td>
+                                            <td>Styling for mobile</td>
+                                            <td class="text-right">
+												<span><i class="fa fa-clock-o m-r10"></i> 02 : 10 : 05</span>
+											</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
+
+								<div id="review" class="tab-pane comments-area">
+
+									<div class="row">
+										<div class="col-md-4 col-sm-5 m-b30">
+											<h5>Rating</h5>
+											<div class="icon-bx-wraper bx-style-1 center p-a20">
+												<h2 class="font-85 m-t0 m-b5 text-primary">5</h2>
+												<div class="icon-content">
+													<div class="star-rating">
+														<div data-rating="5">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+														</div>
+													</div>
+													<p>1 ratings</p>
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+
+									<div id="comments">
+										<ol class="commentlist">
+
+											<li class="comment">
+												<div class="comment_container">
+													<div>
+														<div  class="star-rating">
+															<div> <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </div>
+														</div>
+														<p class="meta"> <strong class="author">Jax</strong> <span><i class="fa fa-clock-o"></i> May 17, 2017</span> </p>
+														<div class="description">
+															<p>Learn a lot from the course.</p>
+														</div>
+													</div>
+												</div>
+											</li>
+
+										</ol>
+									</div>
+
+									<!--
+									<div class="comment-respond" id="respond">
+										<h3 class="comment-reply-title" id="reply-title">Leave a Reply <small> <a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a> </small> </h3>
+										<form class="comment-form" id="commentform" method="post" action="http://sedatelab.com/developer/donate/wp-comments-post.php">
+											<p class="comment-form-author">
+												<label for="author">Name <span class="required">*</span></label>
+												<input type="text" value="Author" name="Author"  placeholder="Author" id="author">
+											</p>
+
+											<p class="comment-form-comment">
+												<label for="comment">Comment</label>
+												<textarea rows="8" name="comment" placeholder="Comment" id="comment"></textarea>
+											</p>
+											<p class="form-submit">
+												<input type="submit" value="Post Comment" class="submit" id="submit" name="submit">
+											</p>
+										</form>
+									</div>   -->
+
+
+								</div>
+
+							</div>
+                        </div>
+                    </div>
+					
+					
+				</div>
+            </div>
+            <!-- Product details -->
+        </div>
+        <!-- contact area  END -->
+    </div>
+    <!-- Content END-->
+<!-- JavaScript  files ========================================= -->
+<% include ../partial/footer%>

@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c17c4d90-6c68-437c-992a-102f41833943" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/admin/course_detail.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/courses/details/3d-design-and-printing.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/courses/details/electrical-engineering-with-arduino.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/courses/details/game-design-with-stratch.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/courses/details/game-design-with-unity.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/courses/details/iot-with-raspberrypi.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/courses/details/python-coding-with-game.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/courses/details/robot-vex.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/courses/details/wonder-dash-and-dot.ejs" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/index.js" afterPath="$PROJECT_DIR$/middleware/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/courseModel.js" afterPath="$PROJECT_DIR$/models/courseModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/admin.js" afterPath="$PROJECT_DIR$/routes/admin.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/user.js" afterPath="$PROJECT_DIR$/routes/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/admin/courses.ejs" afterPath="$PROJECT_DIR$/views/admin/courses.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/contact.ejs" afterPath="$PROJECT_DIR$/views/contact.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/courses/courses.ejs" afterPath="$PROJECT_DIR$/views/courses/courses.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/courses/enroll.ejs" afterPath="$PROJECT_DIR$/views/courses/enroll.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/event/eventdetail/bay-area-parent-education-fair.ejs" afterPath="$PROJECT_DIR$/views/event/eventdetail/bay-area-parent-education-fair.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/event/eventdetail/kiditech-openhouse-2017.ejs" afterPath="$PROJECT_DIR$/views/event/eventdetail/kiditech-openhouse-2017.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/event/events.ejs" afterPath="$PROJECT_DIR$/views/event/events.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.ejs" afterPath="$PROJECT_DIR$/views/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partial/header.ejs" afterPath="$PROJECT_DIR$/views/partial/header.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/shop/item/3d-printing-service.ejs" afterPath="$PROJECT_DIR$/views/shop/item/3d-printing-service.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/shop/shop.ejs" afterPath="$PROJECT_DIR$/views/shop/shop.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/users/coursedetail.ejs" afterPath="$PROJECT_DIR$/views/users/coursedetail.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/users/coursewatch.ejs" afterPath="$PROJECT_DIR$/views/users/coursewatch.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,8 +24,38 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="59" column="3" lean-forward="true" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
+            <state relative-caret-position="266">
+              <caret line="35" column="53" lean-forward="true" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="615">
+              <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/admin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="930">
+              <caret line="117" column="73" lean-forward="true" selection-start-line="117" selection-start-column="73" selection-end-line="117" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -144,7 +148,6 @@
         <option value="$PROJECT_DIR$/views/courses/enroll.ejs" />
         <option value="$PROJECT_DIR$/views/admin/course_detail.ejs" />
         <option value="$PROJECT_DIR$/views/admin/courses.ejs" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/admin/coursedetail.ejs" />
         <option value="$PROJECT_DIR$/views/event/events.ejs" />
         <option value="$PROJECT_DIR$/views/event/eventdetail/bay-area-parent-education-fair.ejs" />
@@ -160,6 +163,7 @@
         <option value="$PROJECT_DIR$/views/users/coursewatch.ejs" />
         <option value="$PROJECT_DIR$/views/users/coursedetail.ejs" />
         <option value="$PROJECT_DIR$/views/shop/item/3d-printing-service.ejs" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
@@ -558,12 +562,12 @@
       <workItem from="1512040236500" duration="185000" />
       <workItem from="1512087793276" duration="591000" />
       <workItem from="1512122175074" duration="7900000" />
-      <workItem from="1512213805819" duration="15539000" />
+      <workItem from="1512213805819" duration="15951000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240969000" />
+    <option name="totallyTimeSpent" value="241381000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="821" extended-state="6" />
@@ -826,14 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="68" column="53" lean-forward="false" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/courses.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
@@ -878,22 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="117" column="73" lean-forward="true" selection-start-line="117" selection-start-column="73" selection-end-line="117" selection-end-column="73" />
           <folding />
         </state>
       </provider>
@@ -958,10 +938,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="117" column="73" lean-forward="true" selection-start-line="117" selection-start-column="73" selection-end-line="117" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="59" column="3" lean-forward="true" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
+        <state relative-caret-position="266">
+          <caret line="35" column="53" lean-forward="true" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
           <folding />
         </state>
       </provider>

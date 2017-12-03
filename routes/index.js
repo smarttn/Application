@@ -69,11 +69,11 @@ router.get("/course/:id",function(req,res){
 router.get("/course/:id/enroll",middleware.isLoggedIn,function(req,res){
 
 
-    courseModel.findById(req.params.id).exec(function(err,foundcourse){
+    courseModel.findById(req.params.id).exec(function(err,found){
         if(err){
             console.log(err);
         }else{
-            res.render("courses/enroll",{course:foundcourse});
+            res.render("courses/enroll",{course:found});
         }
     });
 
