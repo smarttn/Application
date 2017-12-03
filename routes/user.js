@@ -48,7 +48,7 @@ router.get("/courses/:id",function(req,res){
 router.get("/courses/:id/:id2",function(req,res){
     courseModel.findById(req.params.id).exec(function(err,courseinfo){
         if(err){
-            console.log(err);
+
         }else{
             sec = req.params.id2
             if(sec=='sec1'){

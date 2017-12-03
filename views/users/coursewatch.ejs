@@ -12,26 +12,74 @@
         <div class="container">
             <ul class="list-inline">
                 <li><a href="#">Home</a></li>
-                <li>User</li>
+                <li>Video</li>
             </ul>
         </div>
     </div>
     <!-- Breadcrumb row END -->
     <div class="content-area">
         <div class="container">
+
+
+
+
+
             <div class="row">
 
 
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="w3-media m-b30" style="box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                        </div>
+                    </div>
 
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="<%= sec.video %>" allowfullscreen></iframe>
+                    <div class="w3-divider bg-gray-dark"><br></div>
+
+
+                    <!-- Tabs -->
+                    <div class="w3-tabs border bg-tabs product-description" style="box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+                        <ul class="nav nav-tabs w25 ">
+                            <li class="active">
+                                <a data-toggle="tab" href="#description">
+                                    <i class="fa fa-bookmark m-r10"></i>
+                                    <span class="title-head">SECTION</span>
+                                </a>
+                            </li>
+
+
+
+                        </ul>
+                        <div class="tab-content">
+                            <div id="description" class="tab-pane active">
+                                <h3 class="m-t0">Section: </h3>
+                                <p class="m-b10">
+                                    <%= sec.title %></p>
+                                <br>
+                                <h3 class="m-t0">Guide: </h3>
+                                <p class="m-b10">
+                                    <%= sec.detail %></p>
+                                <br>
+
+
+
+
+                                <div class="w3-divider bg-gray-dark"><i class="icon-dot c-square"></i></div>
+
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
                 </div>
 
 
-
-               <h1><%= sec.video %></h1>
-
             </div>
+
+
         </div>
     </div>
 </div>

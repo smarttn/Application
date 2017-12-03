@@ -52,4 +52,19 @@ middlewareObj.isLoggedIn = function(req,res,next){
 	res.redirect("/login");
 };
 
+middlewareObj.isLoggedInandAdmin = function(req,res,next){
+    if(req.isAuthenticated()){
+        if (req.user.isadmin == "false"){
+            req.flash("error","You have not right to access admin page");
+            return res.redirect("/");
+        }
+
+		return next();
+
+    }
+    req.flash("error","You need to be logged in to do that");
+    res.redirect("/login");
+};
+
+
 module.exports = middlewareObj;

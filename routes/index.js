@@ -11,7 +11,15 @@ var Enroll = require("../models/enroll")
 
 
 router.get("/",function(req,res){
-	res.render("index");
+
+    courseModel.find({},function(err,courseCollection){
+        if(err){
+            console.log(err);
+        }else{
+
+            res.render("index",{courses:courseCollection});
+        }
+    })
 
 });
 
@@ -32,47 +40,44 @@ router.get("/contact",function(req,res){
 
 
 router.get("/courses",function(req,res){
-    res.render("courses/courses");
+    courseModel.find({},function(err,courseCollection){
+        if(err){
+            console.log(err);
+        }else{
+
+            res.render("courses/courses",{courses:courseCollection});
+        }
+    })
 
 });
 
 
-router.get("/course/game-design-with-stratch",function(req,res){
-    res.render("courses/details/game-design-with-stratch");
+router.get("/course/:id",function(req,res){
+    courseModel.findById(req.params.id).exec(function(err,foundcourse){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("courses/coursedetail",{course:foundcourse});
+        }
+    });
 
 });
-router.get("/course/python-coding-with-game",function(req,res){
-    res.render("courses/details/python-coding-with-game");
 
-});
-router.get("/course/iot-with-raspberrypi",function(req,res){
-    res.render("courses/details/iot-with-raspberrypi");
 
-});
-router.get("/course/electrical-engineering-with-arduino",function(req,res){
-    res.render("courses/details/electrical-engineering-with-arduino");
 
-});
-router.get("/course/robot-vex",function(req,res){
-    res.render("courses/details/robot-vex");
-
-});
-router.get("/course/wonder-dash-and-dot",function(req,res){
-    res.render("courses/details/wonder-dash-and-dot");
-
-});
-router.get("/course/game-design-with-unity",function(req,res){
-    res.render("courses/details/game-design-with-unity");
-
-});
-router.get("/course/3d-design-and-printing",function(req,res){
-    res.render("courses/details/3d-design-and-printing");
-
-});
 
 router.get("/course/:id/enroll",middleware.isLoggedIn,function(req,res){
 
-res.render("courses/enroll",{course:req.params.id,price:400});
+
+    courseModel.findById(req.params.id).exec(function(err,foundcourse){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("courses/enroll",{course:foundcourse});
+        }
+    });
+
+
 
 
 });
