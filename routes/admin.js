@@ -76,13 +76,13 @@ router.post("/newcourse",middleware.isLoggedInandAdmin,function(req,res){
 
 	var newcourse = {name:name,img:img,des:des,
         price:price,inst:inst,pre:pre,
-        outcome:{
-	    o1:o1,o2:o2,o3:o3,o4:o4,o5:o5
-        },
-		sec1:{title:sec1t,detail:sec1d,video:sec1v},
-        sec2:{title:sec2t,detail:sec2d,video:sec2v},
-        sec3:{title:sec3t,detail:sec3d,video:sec3v},
-        sec4:{title:sec4t,detail:sec4d,video:sec4v},
+
+	    o1:o1,o2:o2,o3:o3,o4:o4,o5:o5,
+
+		sec1t:sec1t,sec1d:sec1d,sec1v:sec1v,
+        sec2t:sec2t,sec2d:sec2d,sec2v:sec2v,
+        sec3t:sec3t,sec3d:sec3d,sec3v:sec3v,
+        sec4t:sec4t,sec4d:sec4d,sec4v:sec4v
 	};
 	
 	courseModel.create(newcourse,function(err,newlyCreated){
@@ -109,26 +109,26 @@ router.put("/updatecourse/:id",middleware.isLoggedInandAdmin,function(req,res) {
     if (req.body.inst) objForUpdate.inst = req.body.inst;
     if (req.body.pre) objForUpdate.pre = req.body.pre;
     if (req.body.des) objForUpdate.des = req.body.des;
-    if (req.body.o1) objForUpdate.outcome.o1 = req.body.o1;
-    if (req.body.o2) objForUpdate.outcome.o2 = req.body.o2;
-    if (req.body.o3) objForUpdate.outcome.o3 = req.body.o3;
-    if (req.body.o4) objForUpdate.outcome.o4 = req.body.o4;
-    if (req.body.o5) objForUpdate.outcome.o5 = req.body.o5;
+    if (req.body.o1) objForUpdate.o1 = req.body.o1;
+    if (req.body.o2) objForUpdate.o2 = req.body.o2;
+    if (req.body.o3) objForUpdate.o3 = req.body.o3;
+    if (req.body.o4) objForUpdate.o4 = req.body.o4;
+    if (req.body.o5) objForUpdate.o5 = req.body.o5;
 
-    if (req.body.sec1title) objForUpdate.sec1.title = req.body.sec1title;
-    if (req.body.sec2title) objForUpdate.sec2.title = req.body.sec2title;
-    if (req.body.sec3title) objForUpdate.sec3.title = req.body.sec3title;
-    if (req.body.sec4title) objForUpdate.sec4.title = req.body.sec4title;
+    if (req.body.sec1title) objForUpdate.sec1t = req.body.sec1title;
+    if (req.body.sec2title) objForUpdate.sec2t = req.body.sec2title;
+    if (req.body.sec3title) objForUpdate.sec3t = req.body.sec3title;
+    if (req.body.sec4title) objForUpdate.sec4t = req.body.sec4title;
 
-    if (req.body.sec1detail) objForUpdate.sec1.detail = req.body.sec1detail;
-    if (req.body.sec2detail) objForUpdate.sec2.detail = req.body.sec2detail;
-    if (req.body.sec3detail) objForUpdate.sec3.detail = req.body.sec3detail;
-    if (req.body.sec4detail) objForUpdate.sec4.detail = req.body.sec4detail;
+    if (req.body.sec1detail) objForUpdate.sec1d = req.body.sec1detail;
+    if (req.body.sec2detail) objForUpdate.sec2d = req.body.sec2detail;
+    if (req.body.sec3detail) objForUpdate.sec3d = req.body.sec3detail;
+    if (req.body.sec4detail) objForUpdate.sec4d = req.body.sec4detail;
 
-    if (req.body.sec1video) objForUpdate.sec1.video = req.body.sec1video;
-    if (req.body.sec2video) objForUpdate.sec2.video = req.body.sec2video;
-    if (req.body.sec3video) objForUpdate.sec3.video = req.body.sec3video;
-    if (req.body.sec4video) objForUpdate.sec4.video = req.body.sec4video;
+    if (req.body.sec1video) objForUpdate.sec1v = req.body.sec1video;
+    if (req.body.sec2video) objForUpdate.sec2v = req.body.sec2video;
+    if (req.body.sec3video) objForUpdate.sec3v = req.body.sec3video;
+    if (req.body.sec4video) objForUpdate.sec4v = req.body.sec4video;
 
 
 

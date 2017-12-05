@@ -52,16 +52,16 @@ router.get("/courses/:id/:id2",function(req,res){
         }else{
             sec = req.params.id2
             if(sec=='sec1'){
-                res.render("users/coursewatch",{sec:courseinfo.sec1});
+                res.render("users/coursewatch",{sec:{title:courseinfo.sec1t,detail:courseinfo.sec1d,video:courseinfo.sec1v}});
             };
             if(sec=='sec2'){
-                res.render("users/coursewatch",{sec:courseinfo.sec2});
+                res.render("users/coursewatch",{sec:{title:courseinfo.sec2t,detail:courseinfo.sec2d,video:courseinfo.sec2v}});
             };
             if(sec=='sec3'){
-                res.render("users/coursewatch",{sec:courseinfo.sec3});
+                res.render("users/coursewatch",{sec:{title:courseinfo.sec3t,detail:courseinfo.sec3d,video:courseinfo.sec3v}});
             };
             if(sec=='sec4'){
-                res.render("users/coursewatch",{sec:courseinfo.sec4});
+                res.render("users/coursewatch",{sec:{title:courseinfo.sec4t,detail:courseinfo.sec4d,video:courseinfo.sec4v}});
             };
 
         }

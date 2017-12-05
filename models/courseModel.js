@@ -8,34 +8,29 @@ var courseSchema = new mongoose.Schema({
     pre:String,
 	des:String,
 
-    outcome:{
 	    o1:String,
         o2:String,
         o3:String,
         o4:String,
-        o5:String
-    },
+        o5:String,
 
-	sec1:{
-		title:String,
-		detail:String,
-		video:String
-	},
-    sec2:{
-        title:String,
-        detail:String,
-        video:String
-    },
-    sec3:{
-        title:String,
-        detail:String,
-        video:String
-    },
-    sec4:{
-        title:String,
-        detail:String,
-        video:String
-    }
+		sec1t:String,
+		sec1d:String,
+		sec1v:String,
+
+    sec2t:String,
+    sec2d:String,
+    sec2v:String,
+
+    sec3t:String,
+    sec3d:String,
+    sec3v:String,
+
+    sec4t:String,
+    sec4d:String,
+    sec4v:String
+
+
 
 
 });
