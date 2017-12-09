@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var courseModel = require("../models/courseModel");
+var shopModel = require("../models/shopModel");
 var middleware = require("../middleware")
 
 
@@ -145,10 +146,88 @@ router.put("/updatecourse/:id",middleware.isLoggedInandAdmin,function(req,res) {
 });
 
 
+
+
+
+
 router.delete("/:id",middleware.isAuthorizated,function(req,res){
 	courseModel.findByIdAndRemove(req.params.id,function(err){
 		res.redirect("/courses");
 	})
+});
+
+
+router.get("/shop",middleware.isLoggedInandAdmin,function(req,res){
+
+    shopModel.find({},function(err,shopCollection){
+        if(err){
+            console.log(err);
+        }else{
+
+            res.render("admin/shop",{shops:shopCollection});
+        }
+    })
+
+});
+
+
+router.post("/newitem",middleware.isLoggedInandAdmin,function(req,res){
+
+    var name = req.body.name;
+    var img = req.body.img;
+    var price = req.body.price;
+    var avail = req.body.avail;
+    var detail = req.body.detail;
+    var des = req.body.des;
+
+    var newitem = {name:name,img:img,des:des,
+        price:price,avail:avail,detail:detail
+    };
+
+    shopModel.create(newitem,function(err,newlyCreated){
+        if(err){
+            console.log(err);
+        }else{
+            req.flash("success","Success, Welcome Back!");
+            res.redirect("back");
+        }
+    })
+});
+
+
+
+router.get("/shops/:id",middleware.isLoggedInandAdmin,function(req,res){
+    shopModel.findById(req.params.id).exec(function(err,founditem){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("admin/shopdetail",{shop:founditem});
+        }
+    });
+
+});
+
+
+router.put("/updateitem/:id",middleware.isLoggedInandAdmin,function(req,res) {
+
+    var objForUpdate = {};
+
+    if (req.body.name) objForUpdate.name = req.body.name;
+    if (req.body.img) objForUpdate.img = req.body.img;
+    if (req.body.price) objForUpdate.price = req.body.price;
+
+    if (req.body.avail) objForUpdate.avail = req.body.avail;
+    if (req.body.detail) objForUpdate.detail = req.body.detail;
+    if (req.body.des) objForUpdate.des = req.body.des;
+
+    var setObj = {$set: objForUpdate}
+
+    shopModel.update({_id: req.params.id}, setObj, function (err, updated) {
+        if (err) console.log("Error occured!");
+        req.flash("success","The item is sucessfully updated, welcome back!");
+        res.redirect("back")
+    });
+
 });
 
 
