@@ -7,6 +7,10 @@ var middleware = require("../middleware")
 var Enroll = require("../models/enroll")
 
 
+var stripe = require("stripe")("sk_test_EqOT1pK0QJWpexqQ65cjWGFH");
+
+
+
 //－－－－1级路由规则－－－－－//
 
 
@@ -87,6 +91,7 @@ router.get("/course/:id/enroll",middleware.isLoggedIn,function(req,res){
 
 router.post("/enroll/:id",function(req,res){
 
+
     Enroll.findOne({
         'coursename': req.params.id,
         'student.id':req.user._id }, function(err, user) {
@@ -97,18 +102,32 @@ router.post("/enroll/:id",function(req,res){
             res.redirect("/");
 
         } else {
-
             var newenroll = {coursename:req.params.id,student:{id:req.user._id}};
-            //var newenroll = {coursename:req.body.coursename,student:{id:req.body.userid}};
 
-            Enroll.create(newenroll, function(err,newlyCreated){
+            stripe.customers.create({
+                email: req.body.stripeEmail,
+                source: req.body.stripeToken
+            })
+                .then(customer =>
+            stripe.charges.create({
+                amount:req.body.price*100,
+                description: "Sample Charge",
+                currency: "usd",
+                customer: customer.id
+            }))
+        .then(charge =>  Enroll.create(newenroll, function(err,newlyCreated){
                 if(err){
                     console.log(err);
                 }else{
                     req.flash("success","You had completed the enrollment, welcome back!");
                     res.redirect("/");
                 }
-            })
+            }));
+
+
+
+
+
         }
     })
 });

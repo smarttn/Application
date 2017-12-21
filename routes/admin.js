@@ -5,7 +5,6 @@ var shopModel = require("../models/shopModel");
 var middleware = require("../middleware")
 
 
-
 router.get("/",middleware.isLoggedInandAdmin,function(req,res){
 
     if (req.user.isadmin == "false"){
@@ -42,7 +41,6 @@ router.get("/courses/:id",middleware.isLoggedInandAdmin,function(req,res){
     });
 
 });
-
 
 
 router.post("/newcourse",middleware.isLoggedInandAdmin,function(req,res){
@@ -98,7 +96,6 @@ router.post("/newcourse",middleware.isLoggedInandAdmin,function(req,res){
 
 
 
-
 router.put("/updatecourse/:id",middleware.isLoggedInandAdmin,function(req,res) {
 
     var objForUpdate = {};
@@ -131,11 +128,7 @@ router.put("/updatecourse/:id",middleware.isLoggedInandAdmin,function(req,res) {
     if (req.body.sec3video) objForUpdate.sec3v = req.body.sec3video;
     if (req.body.sec4video) objForUpdate.sec4v = req.body.sec4video;
 
-
-
-
     var setObj = {$set: objForUpdate}
-
 
     courseModel.update({_id: req.params.id}, setObj, function (err, updated) {
         if (err) console.log("Error occured!");
@@ -208,21 +201,27 @@ router.get("/shops/:id",middleware.isLoggedInandAdmin,function(req,res){
 });
 
 
+
+
 router.put("/updateitem/:id",middleware.isLoggedInandAdmin,function(req,res) {
 
-    var objForUpdate = {};
+    var objForUpdate2 = {};
 
-    if (req.body.name) objForUpdate.name = req.body.name;
-    if (req.body.img) objForUpdate.img = req.body.img;
-    if (req.body.price) objForUpdate.price = req.body.price;
+    if (req.body.name) objForUpdate2.name = req.body.name;
 
-    if (req.body.avail) objForUpdate.avail = req.body.avail;
-    if (req.body.detail) objForUpdate.detail = req.body.detail;
-    if (req.body.des) objForUpdate.des = req.body.des;
+    if (req.body.img) objForUpdate2.img = req.body.img;
 
-    var setObj = {$set: objForUpdate}
+    if (req.body.price2) objForUpdate2.price = req.body.price2;
 
-    shopModel.update({_id: req.params.id}, setObj, function (err, updated) {
+    if (req.body.avail) objForUpdate2.avail = req.body.avail;
+
+    if (req.body.des) objForUpdate2.des = req.body.des;
+
+    if (req.body.detail) objForUpdate2.detail = req.body.detail;
+
+    var setObj2 = {$set: objForUpdate2}
+
+    shopModel.update({_id: req.params.id},setObj2,function (err, updated) {
         if (err) console.log("Error occured!");
         req.flash("success","The item is sucessfully updated, welcome back!");
         res.redirect("back")

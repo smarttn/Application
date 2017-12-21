@@ -28,7 +28,6 @@ router.get("/:id/courses",function(req,res){
         });
     });
 
-
 });
 
 
