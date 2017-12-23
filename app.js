@@ -13,7 +13,10 @@ var indexRoutes      = require("./routes/index"),
 	userRoutes = require("./routes/user")
 
 
-mongoose.connect("mongodb://rliu1:mlab2678802@ds141175.mlab.com:41175/kiditech");
+mongoose.connect("mongodb://kiditechdb:kiditech520@ds163796.mlab.com:63796/kiditech");
+
+
+
 
 //mongoose.connect(process.env.DATABASEURL);
 app.use(express.static(__dirname + "/public"));
