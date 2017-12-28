@@ -1,0 +1,140 @@
+<% include ../partial/header%>
+<!-- Content -->
+
+<script type="text/javascript">
+    $("#user").addClass("active");
+</script>
+
+<div class="page-content">
+
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Problems</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb row END -->
+    <div class="content-area">
+        <div class="container">
+            <div class="row">
+
+
+
+                <ul id="masonry" class="w3-gallery-listing gallery-grid-4 gallery mfp-gallery w3-courses">
+                    <% problems.forEach(function(problem){%>
+                    <li data-filter="facilities" class="card-container col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                        <div class="w3-box w3-gallery-box" style="box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+                            <div class="w3-media w3-img-overlay2 w3-img-effect zoom"> <img src="" style="width: 230px;height: 167px;" alt="">
+                                <div class="w3-info-has p-a20  no-hover">
+                                    <a href="javascript:void(0)"> <%=problem.id %>.<%=problem.title %>  </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <%})%>
+                </ul>
+
+                <div class="w3-divider bg-gray-dark"><br></div>
+
+
+
+                <!-- New Problem -->
+                <div class="col-sm-10 col-sm-offset-1">
+                    <form class="p-a30 w3-form text-center text-center"action="/admin/newProblem" method="POST">
+                        <h4>Create A New Problem</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-body form-horizontal payment-form">
+                                <div class="form-group">
+                                    <label for="concept" class="col-sm-3 control-label">Problem Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Category</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="category" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Difficulty</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="difficulty" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Problem Description</label>
+                                    <div class="col-sm-8">
+                                        <textarea rows="10" cols="30" class="form-control" name="problem_description" placeholder="Please input the problem description" required ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Hint</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="hint" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Example</label>
+                                    <div class="col-sm-8">
+                                        <textarea rows="10" cols="30" class="form-control" name="example" required ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Code Framework</label>
+                                    <div class="col-sm-8">
+                                        <textarea rows="10" cols="30" class="form-control" name="code_framework" placeholder="Please input the code framework" required ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Function Call</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="function_call" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Test Cases</label>
+                                    <div class="col-sm-8">
+                                        <textarea rows="10" cols="30" class="form-control" name="test_cases" placeholder="Please seperate different test cases with '||'"required ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-3 control-label">Anwsers</label>
+                                    <div class="col-sm-8">
+                                        <textarea rows="10" cols="30" class="form-control" name="anwsers" placeholder="Please seperate anwsers for different test cases with '||'" required ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <hr style="border:1px dashed #dddddd;">
+                                    <button type="submit" class="btn btn-success btn-block">Create</button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- / New Course-->
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content END-->
+<!-- JavaScript  files ========================================= -->
+<% include ../partial/footer%>
