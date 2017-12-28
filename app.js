@@ -11,6 +11,7 @@ var User = require("./models/user");
 var indexRoutes      = require("./routes/index"),
 	adminRoutes = require("./routes/admin")
 	userRoutes = require("./routes/user")
+	codeRoutes = require("./routes/code")
 
 
 mongoose.connect("mongodb://kiditechdb:kiditech520@ds163796.mlab.com:63796/kiditech");
@@ -52,6 +53,7 @@ app.use(indexRoutes);
 
 app.use("/user",userRoutes);
 app.use("/admin",adminRoutes);
+app.use("/code",codeRoutes);
 
 
 app.listen("3000",function(){

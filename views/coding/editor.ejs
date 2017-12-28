@@ -35,6 +35,8 @@
                         <br>
 
                         <button id="submit" class="site-button orange radius-xl  m-r15" type="button">Run Code</button>
+                        <button id="run" class="site-button orange radius-xl  m-r15" type="button">Run Code</button>
+
                     </div>
 
                     <div class="col-md-3">
@@ -68,7 +70,11 @@
 
 </script>
 
+
+
 <script>
+
+
 
     $('#submit').on('click', function() {
         var codeF = editor.getValue() ;
@@ -82,8 +88,26 @@
         });
 
     });
+
 </script>
 
+<script>
+
+    $('#run').on('click', function() {
+        var codeF = editor.getValue() ;
+        var json = {
+            code: codeF
+        };
+        console.log(json);
+
+        $.post("/build_and_run", json, function(data, error, xhr) {
+
+        });
+
+    });
+
+
+</script>
 
 </body>
 </html>
