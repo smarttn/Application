@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var courseModel = require("../models/courseModel");
 var shopModel = require("../models/shopModel");
+var problemModel = require("../models/problem");
 var middleware = require("../middleware")
 
 
@@ -228,6 +229,78 @@ router.put("/updateitem/:id",middleware.isLoggedInandAdmin,function(req,res) {
     });
 
 });
+
+router.get("/codingProblems",middleware.isLoggedInandAdmin,function(req,res){
+
+    problemModel.find({},function(err,problemCollection){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(problemCollection);
+            res.render("admin/coding_Problem", {problems:problemCollection});
+        }
+    })
+
+});
+
+router.post("/newProblem", middleware.isLoggedInandAdmin,function (req, res) {
+    var id = 1;
+    problemModel.find({},function(err,problemCollection){
+        if(err){
+            console.log(err);
+        }else{
+            id = problemCollection.length + 1;
+        }
+    })
+    var title = req.body.name;
+    var category = req.body.category;
+    var difficulty = req.body.difficulty;
+    var description = req.body.problem_description;
+    var hint = req.body.hint;
+    var example = req.body.example;
+    var code_framework = req.body.code_framework;
+    var function_call = req.body.function_call;
+    console.log(req.body.test_cases);
+    console.log(req.body.anwsers);
+    var test_cases_problem = req.body.test_cases.split("||");
+    var anwsers = req.body.anwsers.split("||");
+
+    console.log(test_cases_problem.length);
+    console.log(anwsers.length);
+    if(test_cases_problem.length != anwsers.length){
+        req.flash("error","The number of test cases and anwsers do not match !");
+        res.redirect("back");
+    }else{
+        console.log(test_cases_problem.length);
+        console.log(anwsers.length);
+        var test_cases = { test_case1 : {input : test_cases_problem[0] ? test_cases_problem[0] : null, output : anwsers[0] ? anwsers[0] : null},
+            test_case2 : {input : test_cases_problem[1] ? test_cases_problem[1] : null, output : anwsers[1] ? anwsers[1] : null},
+            test_case3 : {input : test_cases_problem[2] ? test_cases_problem[2] : null, output : anwsers[2] ? anwsers[2] : null}
+        };
+
+        var newproblem = {
+            id: id,
+            title:title,
+            category:category,
+            difficulty:difficulty,
+            description:description,
+            hint:hint,
+            example:example,
+            code_framework:code_framework,
+            function_call:function_call,
+            test_cases: test_cases
+        }
+        problemModel.create(newproblem, function(err, newlyCreatedProblem){
+            if(err){
+                console.log(err);
+            }else{
+                req.flash("success","Success, Welcome Back!");
+                res.redirect("back");
+            }
+        });
+    }
+
+})
 
 
 module.exports = router;
