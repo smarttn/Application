@@ -1,0 +1,89 @@
+<% include ../partial/header%>
+    <!-- Content -->
+    <div class="page-content bg-white">
+
+        <!-- Breadcrumb row -->
+        <div class="breadcrumb-row">
+            <div class="container">
+                <ul class="list-inline">
+                    <li><a href="#">Home</a></li>
+                    <li>Coding</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb row END -->
+        <!-- contact area -->
+        <div class="content-area" style="margin: 0 0 0 0">
+            <!-- Career -->
+        <div class = "container">
+                <div class="row">
+
+                <div class="col-md-4">
+                    <div class="panel panel-default" style="height:600px">
+                        <div class="panel-heading">Problem Statement</div>
+                        <div class="panel-body">
+                            Panel content
+                        </div>
+                    </div>
+                </div>
+
+
+                    <div class="col-md-5">
+                    <div id="editor" style="height:600px">
+
+                    </div>
+                        <br>
+
+                        <button id="submit" class="site-button orange radius-xl  m-r15" type="button">Run Code</button>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="panel panel-default" style="height:600px">
+                            <div class="panel-heading">Result</div>
+                            <div class="panel-body">
+                                Panel content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+            <!-- Container END -->
+        </div>
+        <!-- contact area END -->
+    </div>
+    <!-- Content END-->
+
+
+
+
+<!-- JavaScript  files ========================================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.setFontSize(14);
+    editor.session.setMode("ace/mode/python");
+    editor.setValue("def hello():\n    print \"Hello!\"\nhello()");
+
+</script>
+
+<script>
+
+    $('#submit').on('click', function() {
+        var codeF = editor.getValue() ;
+        var json = {
+            code: codeF
+        };
+        console.log(json);
+
+        $.post("/codesubmit", json, function(data, error, xhr) {
+
+        });
+
+    });
+</script>
+
+
+</body>
+</html>
