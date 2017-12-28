@@ -10,7 +10,13 @@ var enrollSchema = mongoose.Schema({
         }},
 
 
-    created:  {type: Date, default: Date.now}
+    created:  {type: Date, default: Date.now},
+    email:String,
+    token:String
+
 });
+
+
+
 
 module.exports = mongoose.model("Enroll", enrollSchema);

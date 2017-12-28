@@ -5,8 +5,6 @@ var User = require("../models/user")
 var courseModel = require("../models/courseModel");
 var middleware = require("../middleware")
 var Enroll = require("../models/enroll")
-
-
 var stripe = require("stripe")("sk_test_EqOT1pK0QJWpexqQ65cjWGFH");
 
 
@@ -38,6 +36,9 @@ router.get("/contact",function(req,res){
     res.render("contact");
 
 });
+
+
+
 
 
 //-------------Courses detail route---------------------------------//
@@ -102,7 +103,7 @@ router.post("/enroll/:id",function(req,res){
             res.redirect("/");
 
         } else {
-            var newenroll = {coursename:req.params.id,student:{id:req.user._id}};
+            var newenroll = {coursename:req.params.id,student:{id:req.user._id},email:req.body.stripeEmail,token:req.body.stripeToken};
 
             stripe.customers.create({
                 email: req.body.stripeEmail,
@@ -126,11 +127,40 @@ router.post("/enroll/:id",function(req,res){
 
 
 
-
-
         }
     })
 });
+
+
+
+
+//-------------code handle route---------------------------------//
+
+
+
+
+
+router.post("/codesubmit",function(req,res){
+
+    var code = req.body.code;
+    console.log(code);
+    res.render("coding/editor");
+
+});
+
+
+router.get("/questions",function(req,res){
+    res.render("coding/problems");
+
+});
+
+
+router.get("/coding/problem",function(req,res){
+    res.render("coding/editor");
+
+});
+
+
 
 
 
