@@ -82,9 +82,6 @@ router.get("/course/:id/enroll",middleware.isLoggedIn,function(req,res){
         }
     });
 
-
-
-
 });
 
 
@@ -131,34 +128,6 @@ router.post("/enroll/:id",function(req,res){
     })
 });
 
-
-
-
-//-------------code handle route---------------------------------//
-
-
-
-
-
-router.post("/codesubmit",function(req,res){
-
-    var code = req.body.code;
-    console.log(code);
-    res.render("coding/editor");
-
-});
-
-
-router.get("/questions",function(req,res){
-    res.render("coding/problems");
-
-});
-
-
-router.get("/coding/problem",function(req,res){
-    res.render("coding/editor");
-
-});
 
 
 

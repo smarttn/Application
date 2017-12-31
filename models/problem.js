@@ -1,18 +1,21 @@
-/**
- * Created by ZHANG JOHN on 2017/12/26.
- */
+
 var mongoose   = require("mongoose");
 
 var problemSchema = mongoose.Schema({
-    id: Number,
+    number:String,
     title: String,
     category: String,
     difficulty: String,
     description: String,
-    example: String,
-    hint: String,
-    code_framework: String,
-    function_call: String,
+    //example: String,
+    //hint: String,
+
+
+    code1: String,
+    code2: String,
+
+
+    /*
     test_cases:{
         test_case1:{
             input:[],
@@ -26,7 +29,9 @@ var problemSchema = mongoose.Schema({
             input:[],
             output:[]
         }
-    }
+    },  */
+
+
 });
 
 var problem = mongoose.model("problem",problemSchema);

@@ -24,54 +24,37 @@
         <!-- Career -->
         <div class="container">
             <div class="row">
+
+
                 <!-- Left part start -->
+
+
                 <table class="table table-striped">
                     <tr>
                         <th style="width: 5%">Completed</th>
 
                         <th style="width: 5%">#</th>
-                        <th style="width: 50%">Title</th>
-                        <th style="width: 10%">AC Rate</th>
+                        <th style="width: 40%">Title</th>
+                        <th style="width: 20%">Category</th>
                         <th style="width: 10%">Difficulty</th>
                     </tr>
+
+
+                    <% problems.forEach(function(problem){%>
 
                     <tr>
 
                         <th><i class="fa fa-check-square" aria-hidden="true"></i>
 
                         </th>
-                        <th>1</th>
-                        <th><a href="/coding/problem/">question 1</a></th>
-                        <th>30%</th>
-                        <th>Easy</th>
+                        <th><%=problem.number %></th>
+                        <th><a href="/code/problem/<%=problem._id %>"><%=problem.title %></a></th>
+                        <th><%=problem.category %></th>
+                        <th><%=problem.difficulty %></th>
 
                     </tr>
 
-                    <tr>
-                        <th></th>
-                        <th>2</th>
-                        <th><a href="/coding/problem/">question 2 </a></th>
-                        <th>30%</th>
-                        <th>Easy</th>
-                    </tr>
-
-                    <tr>
-                        <th></th>
-                        <th>3</th>
-                        <th><a href="/coding/problem/">question 3 </a></th>
-                        <th>30%</th>
-                        <th>Easy</th>
-                    </tr>
-
-                    <tr>
-                        <th></th>
-                        <th>4</th>
-                        <th><a href="/coding/problem/">question 4 </a></th>
-                        <th>30%</th>
-                        <th>Easy</th>
-                    </tr>
-
-
+                    <%})%>
 
                 </table>
 

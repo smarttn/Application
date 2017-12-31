@@ -5,6 +5,10 @@ var shopModel = require("../models/shopModel");
 var problemModel = require("../models/problem");
 var middleware = require("../middleware")
 
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+
+
 
 router.get("/",middleware.isLoggedInandAdmin,function(req,res){
 
@@ -71,8 +75,6 @@ router.post("/newcourse",middleware.isLoggedInandAdmin,function(req,res){
     var sec4t = req.body.sec4title;
     var sec4d = req.body.sec4detail;
     var sec4v = req.body.sec4video;
-
-
 
 	var newcourse = {name:name,img:img,des:des,
         price:price,inst:inst,pre:pre,
@@ -230,56 +232,108 @@ router.put("/updateitem/:id",middleware.isLoggedInandAdmin,function(req,res) {
 
 });
 
+
+
 router.get("/codingProblems",middleware.isLoggedInandAdmin,function(req,res){
 
     problemModel.find({},function(err,problemCollection){
         if(err){
             console.log(err);
         }else{
-            console.log(problemCollection);
+            //console.log(problemCollection);
             res.render("admin/coding_Problem", {problems:problemCollection});
         }
     })
 
 });
 
-router.post("/newProblem", middleware.isLoggedInandAdmin,function (req, res) {
-    var id = 1;
-    problemModel.find({},function(err,problemCollection){
-        if(err){
-            console.log(err);
-        }else{
-            id = problemCollection.length + 1;
-        }
-    })
-    var title = req.body.name;
-    var category = req.body.category;
-    var difficulty = req.body.difficulty;
-    var description = req.body.problem_description;
-    var hint = req.body.hint;
-    var example = req.body.example;
-    var code_framework = req.body.code_framework;
-    var function_call = req.body.function_call;
-    console.log(req.body.test_cases);
-    console.log(req.body.anwsers);
-    var test_cases_problem = req.body.test_cases.split("||");
-    var anwsers = req.body.anwsers.split("||");
+router.post("/newProblem", middleware.isLoggedInandAdmin,jsonParser,function (req, res) {
 
-    console.log(test_cases_problem.length);
-    console.log(anwsers.length);
+    /*var id = 1;
+     problemModel.find({},function(err,problemCollection){
+     if(err){
+     console.log(err);
+     }else{
+     id = problemCollection.length + 1;
+     }
+     })  */
+    // var hint = req.body.hint;
+    //var example = req.body.example;
+    //var code_framework = req.body.code_framework;
+    //var function_call = req.body.function_call;
+    //var test_cases_problem = req.body.test_cases.split("||");
+    //var anwsers = req.body.anwsers.split("||");
+
+
+
+    var number = req.body.number;
+    var title = req.body.title;
+    var category = req.body.cat;
+    var difficulty = req.body.diffc;
+    var description = req.body.des;
+    var code1 = req.body.code1;
+    var code2 = req.body.code2;
+
+
+
+
+
+    var newproblem = {
+        number: number,
+        title: title,
+        category: category,
+        difficulty: difficulty,
+        description: description,
+
+
+
+        //hint: hint,
+        //example: example,
+        //function_call: function_call,
+        //test_cases: test_cases
+
+
+
+        code1:code1,
+        code2:code2
+    }
+
+
+
+
+    problemModel.create(newproblem, function (err, newlyCreatedProblem) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            req.flash("success", "Success, Welcome Back!");
+            res.redirect("back");
+
+        }
+    });
+
+});
+
+
+
+
+
+    //console.log(test_cases_problem.length);
+    //console.log(anwsers.length);
+    /*
     if(test_cases_problem.length != anwsers.length){
         req.flash("error","The number of test cases and anwsers do not match !");
         res.redirect("back");
     }else{
-        console.log(test_cases_problem.length);
-        console.log(anwsers.length);
+        //console.log(test_cases_problem.length);
+        //console.log(anwsers.length);
         var test_cases = { test_case1 : {input : test_cases_problem[0] ? test_cases_problem[0] : null, output : anwsers[0] ? anwsers[0] : null},
             test_case2 : {input : test_cases_problem[1] ? test_cases_problem[1] : null, output : anwsers[1] ? anwsers[1] : null},
             test_case3 : {input : test_cases_problem[2] ? test_cases_problem[2] : null, output : anwsers[2] ? anwsers[2] : null}
         };
 
         var newproblem = {
-            id: id,
+            number: number,
             title:title,
             category:category,
             difficulty:difficulty,
@@ -301,6 +355,9 @@ router.post("/newProblem", middleware.isLoggedInandAdmin,function (req, res) {
     }
 
 })
+
+*/
+
 
 
 module.exports = router;

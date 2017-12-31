@@ -47,6 +47,9 @@
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
         </div>
             <!-- Container END -->
@@ -62,45 +65,66 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
+
+
     var editor = ace.edit("editor");
+
+
     editor.setTheme("ace/theme/monokai");
     editor.setFontSize(14);
     editor.session.setMode("ace/mode/python");
-    editor.setValue("def hello():\n    print \"Hello!\"\nhello()");
+
+    editor.getSession().setValue("class solution:\n    <%=code.code1%>\n");
+
 
 </script>
 
 
 
 <script>
+
 
 
 
     $('#submit').on('click', function() {
         var codeF = editor.getValue() ;
+        console.log(typeof codeF)
+
         var json = {
             code: codeF
         };
         console.log(json);
 
-        $.post("/codesubmit", json, function(data, error, xhr) {
+        $.post("/code/problem/submit", json, function(data, error, xhr) {
 
         });
 
     });
 
+
+
+
+
 </script>
+
+
+
 
 <script>
 
-    $('#run').on('click', function() {
-        var codeF = editor.getValue() ;
-        var json = {
-            code: codeF
-        };
-        console.log(json);
 
-        $.post("/build_and_run", json, function(data, error, xhr) {
+
+    $('#run').on('click', function() {
+        var code1 = editor.getValue() ;
+
+
+        var cobject = {
+            code1: code1,
+            code2: "<%=code.code2%>"
+        };
+        console.log(cobject);
+
+        $.post("/code/problem/build_and_run", cobject, function(data, error, xhr) {
 
         });
 

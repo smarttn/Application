@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta charset="utf-8"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"8d5fb92f6e","agent":"","transactionName":"ZwMAYEdSCktRWxZRXV5JJEFbUBBRX1ZNSEBfBA5RWEABTB5OC11FQ0gGUUFSDVQeSRddQUQPDVpqVwFMUVEOAmNFAxFAXFwKfFVMA1FeZg8HQxtUAUw=","applicationID":"2098939","errorBeacon":"bam.nr-data.net","applicationTime":442}</script>
+    <title>Reverse Integer - LeetCode</title>
+    <meta property="og:title" content="Reverse Integer" />
+
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover' name='viewport' />
+
+    <meta name="description" content="Given a 32-bit signed integer, reverse digits of an integer.
+
+Example 1:
+
+Input: 123
+Output:  321
+
+
+
+Example 2:
+
+Input: -123
+Output: -321
+
+
+
+Example 3:
+
+Input: 120
+Output: 21
+
+
+
+Note:
+Assume we are dealing with an environment which could only hold integers within the 32-bit signed integer range. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
+" />
+    <meta property="og:image" content="/static/images/LeetCode_Sharing.png" />
+    <meta property="og:description" content="Can you solve this problem? 🤔" />
+
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160" />
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192" />
+    <meta name="application-name" content="LeetCode"/>
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)
+            ,m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a
+            ,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'
+        );
+        ga('create', 'UA-6849839-6', 'leetcode.com');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+    </script>
+
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="/static/CACHE/css/9439c89903ff.css" type="text/css" />
+
+    <link rel="stylesheet" href="/static/CACHE/css/a8960f4f560e.css" type="text/css" />
+
+
+
+    <script src="/static/common/js/portability_check.js"></script>
+    <script src="/static/jquery/dist/jquery.min.js"></script>
+    <script src="/static/jquery-sticky/jquery.sticky.js"></script>
+    <script src="/static/clipboard/dist/clipboard.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sticky').sticky({topSpacing:0});
+        });
+
+        var userStatus = {
+            isSignedIn: true,
+            isPremium:  true ,
+            isAdmin:  false ,
+
+            username: 'renyu.L',
+            userSlug: 'renyul',
+            avatar: 'https://www.gravatar.com/avatar/81781f177a75e5468baceb7431dba2ed.png?s=200',
+
+        };
+
+        var regionInfo =  'US' ;
+    </script>
+    <script src="/static/angular/angular.min.js"></script>
+    <script src="/static/jquery-ui-dist/jquery-ui.min.js"></script>
+    <script src="/static/noty/lib/noty.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/static/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="/static/respond.js/dest/respond.min.js"></script>
+    <![endif]-->
+
+
+    <script>
+        function openNavList() {
+            var menu = $('#nav-menu-btn');
+            var navbar = $('.navbar-collapse');
+            if(!navbar.hasClass('collapsing')) {
+                if(navbar.hasClass('in')) {
+                    menu.removeClass('open');
+                } else {
+                    menu.addClass('open');
+                }
+            }
+        };
+    </script>
+
+</head>
+<body>
+<script src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="/static/CACHE/js/5ae5edf6f1aa.js"></script>
+
+<script type="text/javascript" src="/static/webpack_bundles/manifest.b1670dd4.js" ></script>
+<script type="text/javascript" src="/static/webpack_bundles/common/js/vendor.2b25c17b.js" ></script>
+
+
+
+<div class="content-wrapper">
+
+
+    <div class="navbar navbar-inverse navbar-extra">
+        <div class="container">
+            <div class="navbar-header">
+                <div id="nav-user-mobile-app"></div>
+                <button
+                        id="nav-menu-btn"
+                        type="button"
+                        class="navbar-toggle pull-left"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse"
+                        onclick="openNavList()"
+                >
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="/static/images/LeetCode_nav.png" height="30px" alt="LeetCode">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li id="storeNav" class="visible-sm">
+                        <a href="/store/" onclick="ga('send', 'event', 'story', 'click', 'nav');">
+                            <span class="navitem-highlight"><i class="fa fa-gift" aria-hidden="true"></i></span>
+                        </a>
+                    </li>
+
+
+                    <li id="exploreNav"><a href="/explore/">Explore</a></li>
+
+                    <li id="problemsNav"><a href="/problemset/all/">Problems</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-expanded="false">
+                            Mock
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/mockinterview/">Mock Interview</a>
+                            </li>
+                            <li>
+                                <a href="/mockinterview/session/list/">Past Sessions</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                    <li><a href="/contest/">Contest</a></li>
+
+
+
+                    <li id="coursesNav" class="hide"><a href="/courses/">Courses</a></li>
+
+                    <li id="articlesNav"><a href="/articles/">Articles</a></li>
+
+
+                    <li id="discussNav"><a href="https://discuss.leetcode.com" target="_blank">Discuss</a></li>
+
+
+                    <li class="visible-xs">
+                        <a href="/playground/"
+                           onclick="ga('send', 'event', 'playground', 'click', 'nav-bar');"
+                        >Playground</a></li>
+
+                    <li id="dot" class="hidden-sm">
+                        <a>•</a>
+                    </li>
+                    <li id="storeNav" class="dropdown hidden-sm">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-expanded="false">
+                <span class="navitem-highlight"><i class="fa fa-gift" aria-hidden="true"></i>&nbsp; Store
+                <span class="caret"></span></span>
+                        </a>
+                        <ul class="dropdown-menu store-dropdown">
+                            <li>
+                                <a href="/store/" onclick="ga('send', 'event', 'store', 'click', 'nav');">
+                                    <span class="text-orange">Redeem</span></a>
+                            </li>
+                            <li>
+                                <a href="/subscribe/" onclick="ga('send', 'event', 'subscribe', 'click', 'nav');">
+                                    <span class="text-orange">Premium</span></a>
+                            </li>
+
+                            <li>
+                                <a href="/book/" onclick="ga('send', 'event', 'book', 'click', 'nav-bar');">
+                                    <span class="text-orange">Book</span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li id="storyNav" class="hide"><a href="/story/" onclick="ga('send', 'event', 'story', 'click', 'nav');">
+                        <span class="navitem-highlight">Story</span></a></li>
+
+
+                </ul>
+                <ul id="navbar-right" class="nav navbar-nav navbar-right nav-user-module">
+
+                    <li id="playgroundNav" class="hidden-xs"></li>
+                    <li id="nav-user-app"></li>
+                </ul>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </div>
+
+
+
+    <div id="notepad-container"></div>
+
+    <div id="question-detail-app"></div>
+
+    <div id="playground-create-modal"></div>
+</div>
+
+
+<footer class="site-footer">
+    <div class="container">
+        <hr>
+        <div class="row">
+
+            <div class="col-sm-4 copyright">
+                <span>Copyright © 2017 LeetCode</span>
+            </div>
+
+            <div class="text-right col-sm-8 region-us">
+                <div class="links">
+                    <a data-toggle="modal" data-target="#supportModal">Contact Us</a>
+                    &nbsp;|&nbsp;
+
+                    <a href="/faq/">F<span class="hide-too-small">requently </span>A<span class="hide-too-small">sked </span>Q<span class="hide-too-small">uestions</span></a>
+                    &nbsp;|&nbsp;
+                    <a href="/terms/">Terms<span class="hide-too-small"> of Service</span></a>
+                    &nbsp;|&nbsp;
+                    <a href="/privacy/">Privacy<span class="hide-too-small">  Policy</span></a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<div class="modal fade simple-modal" id="supportModal" role="dialog">
+    <div class="modal-center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <span class="text-lg text-300">&nbsp;How can we help you?</span>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row text-center">
+                        <div class="col-sm-4">
+                            <a
+                                    class="support-module btn btn-default"
+                                    href="mailto:billing@leetcode.com?subject=Billing%20Issue&body=Name:%0D%0A%0D%0AUsername:%0D%0A%0D%0AMessage:%0D%0A%0D%0A"
+                                    target="_blank"
+                            >
+                                <i class="fa fa-credit-card text-xl" aria-hidden="true"></i>
+                                <br/><text>Billing &amp; Account</text>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a
+                                    class="support-module btn btn-default"
+                                    href="mailto:support@leetcode.com?subject=General%20Support&body=Name:%0D%0A%0D%0AUsername:%0D%0A%0D%0AMessage:%0D%0A%0D%0A"
+                                    target="_blank"
+                            >
+                                <i class="fa fa-life-ring text-xl" aria-hidden="true"></i>
+                                <br/><text>General Support</text>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a
+                                    class="support-module btn btn-default"
+                                    href="mailto:feedback@leetcode.com?subject=Other%20Inquiries&body=Name:%0D%0A%0D%0AUsername:%0D%0A%0D%0AMessage:%0D%0A%0D%0A"
+                                    target="_blank"
+                            >
+                                <i class="fa fa-question-circle text-xl" aria-hidden="true"></i>
+                                <br/><text>Other Inquiries</text>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/static/webpack_bundles/apps/authentication/nav_user.11f6fb78.js" ></script>
+<script type="text/javascript" src="/static/webpack_bundles/common/js/base.d13733de.js" ></script>
+<script type="text/javascript" src="/static/webpack_bundles/apps/playground/create.07ad8219.js" ></script>
+
+<script>
+    (function($, w, d){
+        const settings = {
+            method: 'GET',
+            url: '/points/api/checkin/',
+        };
+        $.ajax(settings)
+            .done(data => {
+            if(!data.msg){
+            new Noty({
+                text: '<a href="/points/"><div>' +
+                '<div class="body pull-right leetcoin">' +
+                '<img src="/static/images/LeetCoin.png" alt="LeetCoin" ' +
+                'width="12px" />&nbsp;+1</div>' +
+                '<div class="title">Daily Check-in</div></div></a>',
+                type: 'alert',
+                timeout: 3000
+            }).show();
+        }
+    });
+
+        $(function() {
+            $('#navbar-right img').addClass('img-rounded');
+            setFooterStyles();
+        });
+
+        function setFooterStyles() {
+            var $footer = $('.site-footer'),
+                height = $footer.outerHeight();
+            $footer.css('margin-top', -height);
+            $('.content-wrapper').css('padding-bottom', height);
+        }
+
+    }(jQuery, window, document));
+    try {
+        ace.config.set("basePath", "/static/ace-builds/src-noconflict/")
+    } catch(err) {}
+</script>
+
+
+
+<script>
+    var pageData = {
+        questionId: '7',
+        questionTitleSlug: 'reverse-integer',
+        nodeBBURL: 'https://discuss.leetcode.com',
+    };
+    function showSpoilers() { }
+</script>
+
+<script type="text/javascript" src="/static/webpack_bundles/apps/question_detail/index.55ef0a00.js" ></script>
+<script type="text/javascript" src="/static/webpack_bundles/angular/app/problemset/js/code-diff.f1129e7d.js" ></script>
+<script src="/static/katex/dist/katex.min.js"></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    skipStartupTypeset: true,
+    showMathMenu: false,
+    config: ['MMLorHTML.js'],
+    jax: ['input/TeX','input/MathML','input/AsciiMath','output/HTML-CSS','output/NativeMML', 'output/PreviewHTML'],
+    extensions: ['tex2jax.js','mml2jax.js','asciimath2jax.js','MathMenu.js','MathZoom.js', 'fast-preview.js', 'AssistiveMML.js', 'a11y/accessibility-menu.js'],
+    TeX: {
+      extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js', 'enclose.js']
+    }
+  });
+</script>
+
+<script type="text/javascript" src="/static/mathjax/MathJax.js"></script>
+
+<script type="text/javascript" src="/static/CACHE/js/fe6a63084d97.js"></script>
+
+
+<link rel="stylesheet" href="/static/katex/dist/katex.min.css">
+
+<script type="text/javascript" src="/static/star-ratings/js/dist/star-ratings.min.js"></script>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+
+</body>
+</html>
