@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c17c4d90-6c68-437c-992a-102f41833943" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/problem.js" afterPath="$PROJECT_DIR$/models/problem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/admin.js" afterPath="$PROJECT_DIR$/routes/admin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/code.js" afterPath="$PROJECT_DIR$/routes/code.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/admin/coding_Problem.ejs" afterPath="$PROJECT_DIR$/views/admin/coding_Problem.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/coding/editor.ejs" afterPath="$PROJECT_DIR$/views/coding/editor.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/coding/problems.ejs" afterPath="$PROJECT_DIR$/views/coding/problems.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partial/header.ejs" afterPath="$PROJECT_DIR$/views/partial/header.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,14 +20,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="editor.ejs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="editor.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/coding/editor.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+            <state relative-caret-position="-281">
+              <caret line="188" column="0" lean-forward="true" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#textarea#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,38 +38,18 @@
       <file leaf-file-name="problem.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/problem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="code.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/code.js">
+      <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/admin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/admin/admin.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-780">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="coding_Problem.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/admin/coding_Problem.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="83" column="67" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="-196">
+              <caret line="264" column="49" lean-forward="true" selection-start-line="264" selection-start-column="49" selection-end-line="264" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -108,8 +82,8 @@
         <option value="$PROJECT_DIR$/models/problem.js" />
         <option value="$PROJECT_DIR$/views/admin/coding_Problem.ejs" />
         <option value="$PROJECT_DIR$/routes/admin.js" />
-        <option value="$PROJECT_DIR$/views/coding/editor.ejs" />
         <option value="$PROJECT_DIR$/routes/code.js" />
+        <option value="$PROJECT_DIR$/views/coding/editor.ejs" />
       </list>
     </option>
   </component>
@@ -144,7 +118,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -237,6 +210,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -404,17 +378,18 @@
       <workItem from="1514495885349" duration="11729000" />
       <workItem from="1514673951083" duration="683000" />
       <workItem from="1514678659464" duration="13651000" />
+      <workItem from="1514765850820" duration="3310000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="306484000" />
+    <option name="totallyTimeSpent" value="309794000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="823" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="823" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.273432" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27272728" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -781,7 +756,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/admin.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-780">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -789,23 +764,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/coding_Problem.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
+        <state relative-caret-position="1245">
           <caret line="83" column="67" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/code.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/problem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/admin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3689">
+        <state relative-caret-position="-196">
           <caret line="264" column="49" lean-forward="true" selection-start-line="264" selection-start-column="49" selection-end-line="264" selection-end-column="49" />
           <folding />
         </state>
@@ -813,20 +796,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/coding/editor.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        <state relative-caret-position="-281">
+          <caret line="188" column="0" lean-forward="true" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/code.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
