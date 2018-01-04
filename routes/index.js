@@ -1,246 +1,495 @@
-var express = require("express");
-var router = express.Router();
-var passport = require("passport");
-var User = require("../models/user")
-var courseModel = require("../models/courseModel");
-var middleware = require("../middleware")
-var Enroll = require("../models/enroll")
-var stripe = require("stripe")("sk_test_EqOT1pK0QJWpexqQ65cjWGFH");
-
-
-
-//－－－－1级路由规则－－－－－//
-
-
-router.get("/",function(req,res){
-
-    courseModel.find({},function(err,courseCollection){
-        if(err){
-            console.log(err);
-        }else{
-
-            res.render("index",{courses:courseCollection});
+var nodemailer = require("nodemailer");
+exports.request_report = function(req,res){
+    res.render("request_report");
+}
+exports.check = function(req,res){
+    res.send({"status":"OK"});
+}
+exports.send=function(req,res){
+    var data = req.body;
+    var score = "";
+    if(data.score != null){
+        score = data.score;
+    }
+    var address_score ="";
+    if(data.address_score != null){
+        address_score = data.address_score;
+    }
+    var price_score ="";
+    if(data.price_score != null){
+        price_score = data.price_score;
+    }
+    var image_score ="";
+    if(data.image_score != null){
+        image_score = data.image_score;
+    }
+    var description_score ="";
+    if(data.description_score != null){
+        description_score = data.description_score;
+    }
+    var average_price = "Not Avaliable";
+    if(data.avg_price.price != null){
+        average_price = data.avg_price.price;
+    }
+    var average_price_date = "";
+    if(data.avg_price.latest_date != null){
+        average_price_date = data.avg_price.latest_date;
+    }
+    var total_number = data.duplicated_listings[0].duplicates.length + data.duplicated_listings[1].duplicates.length;
+    var listingurl = "";
+    if(data.listing_url != null){
+        listingurl = data.listing_url;
+    }
+    var pos = "";
+    if(data.positive_words.length > 0){
+        pos = data.positive_words[0];
+        for(var i = 1; i < data.positive_words.length; i ++){
+            pos += ", " +data.positive_words[i];
         }
-    })
+    }
+    if(pos.length == 0){
+        pos = "There are no Positive Words in the listing description."
+    }
 
-});
-
-
-
-router.get("/about",function(req,res){
-    res.render("about");
-
-});
-
-router.get("/contact",function(req,res){
-    res.render("contact");
-
-});
-
-
-
-
-
-//-------------Courses detail route---------------------------------//
-
-
-router.get("/courses",function(req,res){
-    courseModel.find({},function(err,courseCollection){
-        if(err){
-            console.log(err);
-        }else{
-
-            res.render("courses/courses",{courses:courseCollection});
+    var neg = "";
+    if(data.negative_words.length > 0){
+        neg = data.negative_words[0];
+        for(var i = 1; i < data.negative_words.length; i ++){
+            neg += ", " +data.negative_words[i];
         }
-    })
+    }
+    if(neg.length == 0){
+        neg = "There are no Negative Words in the listing description.";
+    }
 
-});
+    var dup =  "";
+    console.log("current length: " + data.duplicated_listings[0].duplicates.length + " Type: " + data.duplicated_listings[0].type);
+    if(data.duplicated_listings[0].duplicates.length > 0){
+        var type = data.duplicated_listings[0].type;
+        dup += "<tr><td height='12'></td></tr><tr><td style='color:#EC7063;font-weight:500;line-height:1.25!important;line-height:1.25;vertical-align:middle'>Duplicate Type : " +type +" duplicate</td></tr>";
+        for(var i = 0; i < data.duplicated_listings[0].duplicates.length; i ++){
+            var add = data.duplicated_listings[0].duplicates[i];
+            var num = i + 1;
+            dup += "<tr><td style='width:100%;height:auto;display:block;font-weight:500;'><p>" + num + ". <a href = ' " + add +" '>" + add +"</a></p></td></tr>"
+        }
+    }
+    if(data.duplicated_listings[1].duplicates.length > 0){
+        var type = data.duplicated_listings[1].type;
+        dup += "<tr><td height='24'></td></tr><tr><td style='color:#EC7063;font-weight:500;line-height:1.25!important;line-height:1.25;vertical-align:middle'>Duplicate Type : " + type +" duplicate</td></tr>";
+        for(var i = 0; i < data.duplicated_listings[1].duplicates.length; i ++){
+            var add = data.duplicated_listings[1].duplicates[i];
+            var num = i + 1;
+            dup += "<tr><td style='width:100%;height:auto;display:block;font-weight:500;'><p>" + num + ". <a href = ' " + add +" '>" + add +"</a></p></td></tr>"
+        }
+    }
+    if(dup.length ==0){
+        dup = "We could not find any duplicated listings for the submitted listing URL on Craigslist, Trulia, Hotpads and Apartments.com.";
+    }
 
 
-router.get("/course/:id",function(req,res){
-    courseModel.findById(req.params.id).exec(function(err,foundcourse){
-        if(err){
-            console.log(err);
-        }else{
-            res.render("courses/coursedetail",{course:foundcourse});
+    var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+            user: "coconutjelly918@gmail.com",
+            pass: "porpcornChicken@918"
         }
     });
-
-});
-
-
-
-
-router.get("/course/:id/enroll",middleware.isLoggedIn,function(req,res){
-
-
-    courseModel.findById(req.params.id).exec(function(err,found){
+    var mailOptions = {
+        from: 'coconutJelly918@gmail.com',
+        to: data.email_address,
+        subject: 'Fraud Report is Ready ✔', // Subject line
+        html: '<!DOCTYPE html>\
+        <html>\
+        <head>\
+        <meta charset="UTF-8">\
+        <title>Fraud Report</title>\
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">\
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">\
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>\
+        </head>\
+        <body>\
+        <div>\
+        <table width="750" border="0" cellpadding="0" cellspacing="0" align="center" class="m_-2337546958194283536mobile" style="vertical-align:top;border-collapse:collapse">\
+        <tbody>\
+        <tr>\
+        <td width="750" align="center">\
+        <table width="415" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td valign="top" align="left"></td>\
+        </tr>\
+        <tr>\
+        <td width="20" valign="top" align="left" style="width:20px"></td>\
+        <td class="m_-2337546958194283536banner-bg" valign="top" align="center" style="border-collapse:collapse">\
+        <table width="690" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td width="100%" align="center">\
+        <p style="font-size:12px;text-align:center;line-height:2.5!important;line-height:2.5;font-weight:300">This is your Fraud Assessment report.</p>\
+    </td>\
+    </tr>\
+    </tbody>\
+    </table>\
+    </td>\
+    <td width="20" valign="top" align="left" style="width:20px"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        <table width="750" border="0" cellpadding="0" cellspacing="0" align="center" class="m_-2337546958194283536mobile" bgcolor="1ec089" style="background-color:#1ec089;vertical-align:top;border-collapse:collapse">\
+        <tbody>\
+        <tr>\
+        <td width="750" align="center">\
+        <table width="415" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td width="20" valign="top" align="left" style="width:20px"></td>\
+        <td class="m_-2337546958194283536banner-bg" valign="top" align="center" style="border-collapse:collapse">\
+        <table width="690" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td height="30"></td>\
+        </tr>\
+        <tr>\
+        <td width="100%" align="center">\
+        <a class="m_-2337546958194283536logolnk" href=""><img border="0" class="m_-2337546958194283536f-logo CToWUd" height="140" src="http://bosorganization.com/images/icon-house.png" style="height:140px;width:140px"></a>\
+        </td>\
+        </tr>\
+        <tr>\
+        <td height="30"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        <td width="20" valign="top" align="left" style="width:20px"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        <table width="750" border="0" cellpadding="0" cellspacing="0" align="center" class="m_-2337546958194283536mobile" bgcolor="1ec089" style="background-color:#1ec089;vertical-align:top;border-collapse:collapse">\
+        <tbody>\
+        <tr>\
+        <td width="750" align="center">\
+        <table width="415" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td width="20" valign="top" align="left" style="width:20px"></td>\
+        <td class="m_-2337546958194283536banner-bg" valign="top" align="center">\
+        <table width="690" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter" style="border-collapse:collapse">\
+        <tbody>\
+        <tr>\
+        <td bgcolor="4f5f6a" style="background-color:#4f5f6a;border-top-left-radius:5px;border-top-right-radius:5px" align="center">\
+        <table>\
+        <tbody>\
+        <tr>\
+        <td height="4"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        <tr>\
+        <td bgcolor="ffffff" style="background-color:#fff" align="center">\
+        <table>\
+        <tbody>\
+        <tr>\
+        <td height="20"></td>\
+        </tr>\
+        <tr>\
+        <td>\
+        </table>\
+        </td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        <table width="750" border="0" cellpadding="0" cellspacing="0" align="center" class="m_-2337546958194283536mobile" bgcolor="f4f4f1" style="background-color:#f4f4f1;vertical-align:top;border-collapse:collapse">\
+        <tbody>\
+        <tr>\
+        <td width="750" align="center">\
+        <table width="415" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td width="20" valign="top" align="left" style="width:20px"></td>\
+        <td bgcolor="f4f4f1" style="background-color:#fff" align="center">\
+        <table width="690" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td height="35"></td>\
+        </tr>\
+        <tr>\
+        <td>\
+        <table width="100%" style="font-weight:300;text-align:left">\
+        <tbody>\
+        <tr>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        <td align="center" style="border-bottom:solid 1px #bbb;text-align:center;font-family:Helvetica,Verdana,sans-serif;font-weight:300">\
+        <p style="font-size:24px;line-height:1.75!important;line-height:1.75;letter-spacing:1px">Fraud Assessment Report</p>\
+    </td>\
+    <td width="30" valign="top" align="left" style="width:30px"></td>\
+    </tr>\
+        <tr>\
+            <td height="15"></td>\
+        </tr>\
+        <tr>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        <td align="center" style="text-align:left">\
+<table width="100%" style="font-size:18px;text-align:left;line-height:2!important;line-height:2" cellspacing="0" cellpadding="0" border="0">\
+    <tbody>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top"> Listing URL : </td>\
+        </tr>\
+        <tr><td style="width:100%;display:block;font-weight:400;line-height:1.25!important;line-height:1.25;vertical-align:top"><p><a href = " ' + listingurl +'">' + listingurl +'</a></p></td>\
+            <td style = "width = 0%"></td>   \
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top"> Total Score : </td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#F1948A;font-weight:400;text-align:left;line-height:1.25!important;line-height:1.25;vertical-align:top"> ' + score + '<br>&nbsp;&nbsp;</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top"> Description Score : </td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#F1948A;font-weight:400;text-align:left;line-height:1.25!important;line-height:1.25;vertical-align:top"> ' + description_score + '<br>&nbsp;&nbsp;</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top"> Price Score : </td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#F1948A;font-weight:400;text-align:left;line-height:1.25!important;line-height:1.25;vertical-align:top"> ' + price_score + '<br>&nbsp;&nbsp;</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top"> Image Score : </td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#F1948A;font-weight:400;text-align:left;line-height:1.25!important;line-height:1.25;vertical-align:top"> ' + image_score + '<br>&nbsp;&nbsp;</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top"> Address Score : </td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#F1948A;font-weight:400;text-align:left;line-height:1.25!important;line-height:1.25;vertical-align:top"> ' + address_score + '<br>&nbsp;&nbsp;</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top"> Positive Words In The Description Are :</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#2ECC71;font-weight:400;text-align:left;line-height:1.25!important;line-height:1.25;vertical-align:top"> ' + pos + '<br>&nbsp;&nbsp;</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top"> Negative Words In The Description Are :</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#F1948A;font-weight:400;text-align:left;line-height:1.25!important;line-height:1.25;vertical-align:top"> ' + neg + '<br>&nbsp;&nbsp;</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#85929E;font-weight:800;line-height:1.25!important;line-height:1.25;vertical-align:top">Latest Average Rent Price Based On Data Obtained On ' + average_price_date +' Is :</td>\
+        </tr>\
+        <tr>\
+            <td height="12"></td>\
+        </tr>\
+        <tr>\
+            <td style="color:#F1948A;font-weight:400;text-align:left;line-height:1.25!important;line-height:1.25;vertical-align:top"> $ ' + average_price + '<br>&nbsp;&nbsp;</td>\
+        </tr>\
+        <tr>\
+            <td height="60"></td>\
+        </tr>\
+    </tbody>\
+</table>\
+     <tr>\
+        <td height="25"></td>\
+    </tr>\
+    <tr>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        <td align="center" style="border-bottom:solid 1px #bbb;text-align:left">\
+            <p style="font-size:24px;text-align:center;line-height:1.75!important;line-height:1.75;font-weight:300;letter-spacing:1px">Duplicated Listings</p>\
+        </td>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+    </tr>\
+    <tr>\
+        <td height="15"></td>\
+    </tr>\
+        <tr>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        <td align="center" style="text-align:left">\
+        <table width="100%" style="font-size:18px;text-align:left;line-height:1!important;line-height:1" cellspacing="0" cellpadding="0" border="0">\
+        <tbody>\
+        <tr>\
+        <td style="color:#85929E;font-weight:700;text-transform:uppercase;line-height:1.25!important;line-height:1.25;vertical-align:top">TOTAL NUMBER:</td>\
+        <td style="color:#F1948A;font-weight:500;text-align:right;line-height:1.25!important;line-height:1.25;vertical-align:top">' + total_number + '</td>\
+        </tr>' + dup + '\
+        </tbody>\
+        </table>\
+        </td>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        </tr>\
+        <tr>\
+        <td height="15"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        <tr>\
+        <td height="15"></td>\
+        </tr>\
+        <tr>\
+        <td>\
+        <table width="100%">\
+        <tbody>\
+        <tr>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        <td align="center">\
+        <p style= "font-family:Helvetica,Verdana,sans-serif;color:#a4a4a4;font-size:12px;text-align:center;line-height:1.25!important;line-height:1.25;font-weight:700"> To find any possible duplicated listings, we search listings posted on Craigslist, Trulia, Hotpads, and Apartments.com. We will extend this list in the future versions of our fraud detection service.</p>\
+    </td>\
+    <td width="30" valign="top" align="left" style="width:30px"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        <tr>\
+        <td height="10"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        <td width="20" valign="top" align="left" style="width:20px"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        <table width="750" border="0" cellpadding="0" cellspacing="0" align="center" class="m_-2337546958194283536mobile" bgcolor="f4f4f1" style="background-color:#f4f4f1;vertical-align:top;border-collapse:collapse">\
+        <tbody>\
+        <tr>\
+        <td width="750" align="center">\
+        <table width="415" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter" bgcolor="e6e6e6" style="background-color:#e6e6e6">\
+        <tbody>\
+        <tr>\
+        <td width="20" valign="top" align="left" style="width:20px"></td>\
+        <td align="center">\
+        <table width="690" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td>\
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center" valign="middle" class="m_-2337546958194283536fullCenter">\
+        <tbody>\
+        <tr>\
+        <td align="center">\
+        <img src="https://ci3.googleusercontent.com/proxy/HzK05Acrkm9pHcWRx5MFzRaAsT-nlnhaFhtYvswCBqlZnsNTU3pLatE28HkDcak0d6gN7XKbdPwchKcHfcslYZwLr7S0Rcn_Ga3LhwOxc56pe92cr5ChXVV5j_zzxiTuTjMfW4Xa=s0-d-e1-ft#https://dbmgns9xjyk0b.cloudfront.net/email-content/receipt-bottom-edge-white.png" style="width:100%;height:auto;display:block" class="CToWUd">\
+        </td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        <tr>\
+        <td height="15"></td>\
+        </tr>\
+        <tr>\
+        <td>\
+        <table width="100%">\
+        <tbody>\
+        <tr>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        <td align="center" style="border-bottom:solid 1px #bbb;text-align:left">\
+        <p style="font-size:24px;text-align:center;line-height:1.75!important;line-height:1.75;font-weight:300;letter-spacing:1px">Information</p>\
+        </td>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        </tr>\
+        <tr>\
+        <td width="30" valign="top" align="left" style="width:30px"></td>\
+        <td align="center" style="text-align:center;font-family:Helvetica,Verdana,sans-serif;font-weight:300;color:#35b5dc">\
+        <p style="font-weight:500;font-size:15px;line-height:1!important;line-height:1">CMPE 295B Team3 - One Washinton Square, San Jose, CA 95122</p>\
+    <p style="font-weight:500;font-size:15px;line-height:1!important;line-height:1">You have received this email in response to your fraud report request submitted on our website.</p>\
+    </td>\
+    <td width="30" valign="top" align="left" style="width:30px"></td>\
+        </tr>\
+        <tr>\
+        <td height="35"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </td>\
+        <td width="20" valign="top" align="left" style="width:20px"></td>\
+        </tr>\
+        </tbody>\
+        </table>\
+        </div>\
+        </body>\
+        </html>' // html body
+    };
+    transporter.sendMail(mailOptions, function(err, response){
         if(err){
-            console.log(err);
-        }else{
-            res.render("courses/enroll",{course:found});
+            console.log('ERROR!');
+            return res.send('ERROR');
         }
+        res.send({"status":"OK"});
     });
-
-});
-
-
-
-
-router.post("/enroll/:id",function(req,res){
-
-
-    Enroll.findOne({
-        'coursename': req.params.id,
-        'student.id':req.user._id }, function(err, user) {
-        // hanlde err..
-        if (user) {
-
-            req.flash("success","Duplicate enrollment");
-            res.redirect("/");
-
-        } else {
-            var newenroll = {coursename:req.params.id,student:{id:req.user._id},email:req.body.stripeEmail,token:req.body.stripeToken};
-
-            stripe.customers.create({
-                email: req.body.stripeEmail,
-                source: req.body.stripeToken
-            })
-                .then(customer =>
-            stripe.charges.create({
-                amount:req.body.price*100,
-                description: "Sample Charge",
-                currency: "usd",
-                customer: customer.id
-            }))
-        .then(charge =>  Enroll.create(newenroll, function(err,newlyCreated){
-                if(err){
-                    console.log(err);
-                }else{
-                    req.flash("success","You had completed the enrollment, welcome back!");
-                    res.redirect("/");
-                }
-            }));
-
-
-
-        }
-    })
-});
-
-
-
-
-
-
-
-//-------------event route---------------------------------//
-
-router.get("/event",function(req,res){
-    res.render("event/events");
-
-});
-
-
-router.get("/event/bay-area-parent-education-fair",function(req,res){
-    res.render("event/eventdetail/bay-area-parent-education-fair");
-
-});
-
-router.get("/event/kiditech-openhouse-2017",function(req,res){
-    res.render("event/eventdetail/kiditech-openhouse-2017");
-
-});
-
-
-
-
-//-------------shop route---------------------------------//
-
-router.get("/shop",function(req,res){
-    res.render("shop/shop");
-
-
-});
-
-router.get("/shop/3d-printing-service",function(req,res){
-    res.render("shop/item/3d-printing-service");
-
-
-});
-
-
-
-
-
-//-------------footer route---------------------------------//
-
-router.get("/gallery",function(req,res){
-    res.render("gallery");
-
-});
-router.get("/blog",function(req,res){
-    res.render("blog/blogs");
-
-});
-router.get("/career",function(req,res){
-    res.render("career");
-
-});
-router.get("/faq",function(req,res){
-    res.render("faq");
-
-});
-router.get("/privacy-policy",function(req,res){
-    res.render("privacy-policy");
-
-});
-router.get("/help",function(req,res){
-    res.render("help");
-
-});
-
-
-
-
-
-//--------------login logout register route--------------------------------//
-
-router.post("/register",function(req,res){
-	var newUser = new User({username:req.body.username,email:req.body.email,fullname:req.body.fullname,isadmin:"false"});
-	User.register(newUser,req.body.password,function(err,user){
-		if(err){
-			req.flash("error",err.message);
-			return res.redirect("back");
-		}
-		passport.authenticate("local")(req,res,function(){
-		req.flash("success","Account created successfully, welcome here!");
-		res.redirect("back");
-		})
-	})
-});
-
-
-
-router.get("/login",function(req,res){
-	res.render("login");
-});
-
-router.post("/login",passport.authenticate("local",
-	{
-		successRedirect:"/",
-		failureRedirect:"back",
-		failureFlash: 'Invalid username or password.'
-	}),function(req,res){
-});
-
-router.get("/logout",function(req,res){
-	req.logout();
-	req.flash("success","Logged you out!");
-	res.redirect("/");
-});
-
-
-//----------------------------------------------//
-
-module.exports = router;
+    console.log("Succeed");
+}

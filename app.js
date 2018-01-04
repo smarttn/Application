@@ -1,65 +1,50 @@
-var express    = require("express");
-var app        = express();
-var bodyParser = require("body-parser");
-var mongoose   = require("mongoose");
-var passport   = require("passport");
-var methodOverride = require("method-override");
-var LocalStrategy = require("passport-local");
-var flash = require('connect-flash');
-var User = require("./models/user");
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var http = require("http");
+var index = require('./routes/index');
+var users = require('./routes/users');
+//var html = require('html');
+var app = express();
 
-var indexRoutes      = require("./routes/index"),
-	adminRoutes = require("./routes/admin")
-	userRoutes = require("./routes/user")
-	codeRoutes = require("./routes/code")
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-
-mongoose.connect("mongodb://kiditechdb:kiditech520@ds163796.mlab.com:63796/kiditech");
-
-
-
-
-//mongoose.connect(process.env.DATABASEURL);
-app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(methodOverride("_method"));
-app.use(flash());
-app.set("view engine", "ejs");
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use(require("express-session")({
-	secret:"Secret session",
-	resave: false,
-	saveUninitialized:false
-}));
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+
+// catch 404 and forward to error handler
 
 
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-app.use(function(req,res,next){
-	res.locals.currentUser = req.user;
-	res.locals.error = req.flash("error");
-	res.locals.success = req.flash("success");
-	next();
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
-
-
-app.use(indexRoutes);
-
-app.use("/user",userRoutes);
-app.use("/admin",adminRoutes);
-app.use("/code",codeRoutes);
-
-
-//app.listen("3000",function(){
-//console.log("Server started");
-//})
-
-app.listen(process.env.PORT, process.env.IP,function(){
-console.log("Server started!");
+app.get('/request_report',index.request_report);
+app.get('/check', index.check);
+app.post('/fraud_report',index.send);
+var httpServer = require('http').createServer(app);
+httpServer.listen(8888, function() {
+    console.log('stock_recom_backend running on port ' + 8888 + '.');
 });
+console.log('Server running at http://127.0.0.1:8888/');
+// 终端打印如下信息
+
+module.exports = app;
